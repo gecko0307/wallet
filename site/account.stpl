@@ -1,0 +1,114 @@
+% from backendutils import money, transactionAmount, toFixed, currencySymbol, datetimeFromStr, category
+<html lang="ru">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+        <meta name="Description" content="Wallet app"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="shortcut icon" href="favicon.ico" type="image/x-icon"/>
+        <title>Wallet - {{ data.account.name }}</title>
+        <link rel="stylesheet" href="style.css" Type="text/css"/>
+    </head>
+    <body>
+        <div class="header">
+            <p><a href="/">← К списку счетов</a><p>
+        </div>
+        <div class="content">
+        
+        <div class="properties">
+            <h1> {{ data.account.name }} </h1>
+            
+            % if len(data.account.description) > 0:
+                <h2>{{ data.account.description }}</h2>
+            % end
+            
+            <h3>
+                {{ money(data.account.balance, data.account.currency) }}
+                % if data.account.currency != 'RUB':
+                    <span style="color:#bbbbbb">({{ money(data.account.balance * data.account.exchangeRate, 'RUB') }})</span>
+                % end
+            </h3>
+            
+            % if data.account.currency != 'RUB':
+                <p>Конверсия по курсу: <b>{{ toFixed(data.account.exchangeRate, 2) }}</b></p>
+            % end
+        </div>
+        
+        <!-- TODO: операции со счетом -->
+        
+        <a href="/editAccount?id={{data.account.id}}">Изменить счет</a> | <a href="/confirmDeleteAccount?id={{data.account.id}}">Удалить счет</a>
+        
+        <p><b>Транзакции:</b></p>
+        
+        <table class="transactions-table">
+            <tr>
+                <th>Дата</th> 
+                <th>Категория</th> 
+                <th>Описание</th>
+                <th>Сумма</th>
+                <th></th>
+            </tr>
+            
+            % for transaction in sorted(data.account.transactions, key = lambda x: datetimeFromStr(x.date)):
+            <tr id="transaction-{{ transaction.id }}">
+                <th>{{ datetimeFromStr(transaction.date).strftime('%d.%m.%Y') }}</th> 
+                <th>{{ category(transaction.category) }}</th> 
+                <th>{{ transaction.description }}</th>
+                <th style="color:{{ "#379683" if transaction.value > 0 else "#e24444" }}"><b>{{ transactionAmount(transaction.value, transaction.currency) }}</b></th>
+                <th>
+                    <span class="hiddenlink">
+                        <a class="hiddenlink" href="/editTransaction?id={{transaction.id}}">Изменить</a> | 
+                        <a class="hiddenlink" href="/deleteTransaction?id={{transaction.id}}">Удалить</a>
+                    </span>
+                </th>
+            </tr>
+            % end
+        </table>
+        
+            <form id="NewTransactionForm" method="post" action="/newTransaction?account={{data.account.id}}" accept-charset="utf-8">
+                <p style="margin-bottom:0"><b>Создать транзакцию:</b></p>
+                <table class="new-transcation-table">
+                    <tr>
+                        <th><input type="date" id="NewTransactionInputDate" name="date" title="Дата транзакции" required></th>
+                        <th><div class="selectdiv"><select id="NewTransactionInputCategory" name="category" size="1" title="Категория транзакции">
+                            <option value="unspecified" selected>[Не выбрано]</option>
+                            <option value="notrack">[Вне отчетности]</option>
+                            <option value="charity">Благотворительность</option>
+                            <option value="household">Бытовые товары</option>
+                            <option value="lodging">Жилье</option>
+                            <option value="books">Книги</option>
+                            <option value="music">Музыка</option>
+                            <option value="culture">Культурный досуг</option>
+                            <option value="catering">Общепит</option>
+                            <option value="clothes">Одежда</option>
+                            <option value="gifts">Подарки</option>
+                            <option value="food">Продукты питания</option>
+                            <option value="communication">Связь</option>
+                            <option value="software">Софт, игры</option>
+                            <option value="tech">Техника</option>
+                            <option value="transport">Транспорт</option>
+                            <option value="hobby">Хобби и творчество</option>
+                            <option value="salary">Зарплата</option>
+                            <option value="ecommerce">Э-коммерция</option>
+                            <option value="сrowdfunding">Краудфандинг</option>
+                            <option value="interest">Проценты от банков</option>
+                            <option value="other">Прочее</option>
+                            </select>
+                        </div></th>
+                        <th><input id="NewTransactionInputDescription" name="description" type="text" placeholder="Описание транзакции"></th> 
+                        <th><input id="NewTransactionInputValue" name="value" type="number" min="0.00" step="0.01" value="0.00" title="Сумма транзакции" required> {{ currencySymbol(data.account.currency) }}</th>
+                        <th>
+                            <input id="NewTransactionButtonSubmit" type="submit" formaction="/newTransaction?account={{data.account.id}}&type=add" value="+" title="Начислить сумму"> 
+                            <input id="NewTransactionButtonSubmit" type="submit" formaction="/newTransaction?account={{data.account.id}}&type=sub" value="−" title="Списать сумму">
+                        </th>
+                    </tr>
+                </table>
+            </form>
+        
+        <script>
+            document.getElementById("NewTransactionInputDate").valueAsDate = new Date();
+        </script>
+        
+        </div>
+    </body>
+</html>

@@ -1,0 +1,82 @@
+<html lang="ru">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+        <meta name="Description" content="Wallet"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="shortcut icon" href="favicon.ico" type="image/x-icon"/>
+        <title>Wallet - Report</title>
+        <link rel="stylesheet" href="Chart.min.css">
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <div class="header">
+            <p><a href="/">← К списку счетов</a><p>
+        </div>
+        <div class="content">
+        <h4 style="text-align:center">Расходы</h4>
+        
+        <div id="report">
+            <canvas id="myChart"></canvas>
+        </div>
+        </div>
+        
+        <script src="Chart.bundle.min.js"></script>
+        <script src="frontendutils.js"></script>
+        <script>
+var ctx = document.getElementById("myChart").getContext("2d");
+
+loadJSON("/expences.json", function(json) {    
+    var data = JSON.parse(json);
+    
+    var labels = data.categories;    
+    var expences = data.expences;
+    var colors = [
+        "#ff7a7a", "#ffcf7a", "#8be37d", "#82e6e7", "#96ade0", "#c776f1", 
+        "#7acbad", "#f691cc", "#cb9b6f", "#decd70", "#d3ea82", "#b0b799"
+    ];
+    for (var i = 0; i < labels.length; i++) {
+        if (i >= colors.length)
+            colors.push(strToRGB(labels[i]));
+    }
+    
+    labelsTranslated = [];
+    labels.map(v => {
+        labelsTranslated.push(category(v));
+    });
+    
+    var pieChart = new Chart(ctx, {
+        type: "pie",
+        data: {
+            labels: labelsTranslated,
+            datasets: [
+                {
+                    data: expences,
+                    backgroundColor: colors,
+                    borderColor: "rgba(0, 0, 0, 0)"
+                }
+            ]
+        },
+        options: {
+            tooltips: {
+                callbacks: {
+                    label: function(tooltipItem, data) {
+                        var sum = 0;
+                        var values = data.datasets[tooltipItem.datasetIndex].data;
+                        values.map(v => {
+                            sum += v;
+                        });
+                        var label = labelsTranslated[tooltipItem.index];
+                        var value = expences[tooltipItem.index];
+                        var m = money(value, "RUB");
+                        var percentage = (value * 100 / sum).toFixed(2)+"%";
+                        return " " + label + " - " + m + " (" + percentage + ")";
+                    }
+                }
+            }
+        }
+    });
+});
+
+        </script>
+    </body>
+</html>

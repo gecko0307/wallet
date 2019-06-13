@@ -1,0 +1,44 @@
+% from backendutils import money
+<html lang="ru">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+        <meta name="Description" content="Wallet"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="shortcut icon" href="favicon.ico" type="image/x-icon"/>
+        <title>Wallet - Счета</title>
+        <link rel="stylesheet" href="style.css" Type="text/css"/>
+    </head>
+    <body>
+        <div class="header">
+        </div>
+        <div class="content">
+        <h1>Счета</h1>
+        
+        <h3>
+            {{ money(data.totalBalance, 'RUB') }}
+        </h3>
+        
+        <table class="accounts-table">
+        % for account in sorted(data.accounts, key = lambda x: x.name):
+            <tr class="clickablerow" onclick="document.location = '/account?id={{account.id}}';">
+                <th><a href="/account?id={{account.id}}">{{ account.name }}</a></th> 
+                <th class="amountrow">{{ money(account.balance, account.currency) }}</th>
+                <th>
+                    <span class="hiddenlink">
+                        <a href="/editAccount?id={{account.id}}">Изменить</a> | 
+                        <a href="/confirmDeleteAccount?id={{account.id}}">Удалить</a>
+                    </span>
+                </th>
+            </tr>
+        % end
+        </table>
+        
+        <button onclick="document.location = '/createaccount';">💲 Создать счет</button>
+        <button onclick="document.location = '/assets.html';">📊 Активы</button>
+        <button onclick="document.location = '/flow.html';">📊 Денежный поток</button>
+        <button onclick="document.location = '/revenue.html';">📊 Доходы</button>
+        <button onclick="document.location = '/expences.html';">📊 Расходы</button>
+
+        </div>
+    </body>
+</html>

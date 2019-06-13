@@ -1,0 +1,95 @@
+<html lang="ru">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+        <meta name="Description" content="Wallet"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="shortcut icon" href="favicon.ico" type="image/x-icon"/>
+        <title>Wallet - Report</title>
+        <link rel="stylesheet" href="Chart.min.css">
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <div class="header">
+            <p><a href="/">← К списку счетов</a><p>
+        </div>
+        <div class="content">
+        <h4 style="text-align:center">Денежный поток за 2019</h4>
+        
+        <div id="report">
+            <canvas id="myChart"></canvas>
+        </div>
+        <br>
+        <p id="AnnualRevenue">Годовой доход: </p>
+        <p id="AnnualExpence">Годовой расход: </p>
+        <p id="AnnualNet">Годовой чистый доход: </p>
+        </div>
+        
+        <script src="Chart.bundle.min.js"></script>
+        <script src="frontendutils.js"></script>
+        <script>
+var ctx = document.getElementById("myChart").getContext("2d");
+
+loadJSON("/flow.json", function(json) {
+    var data = JSON.parse(json);
+    
+    var annualRevenue = 0;
+    var annualExpence = 0;
+    var annualNet = 0;
+    
+    data.revenue.map(v => {
+        annualRevenue += v;
+    });
+    
+    data.expense.map(v => {
+        annualExpence += v;
+    });
+    
+    annualNet = annualRevenue - annualExpence;
+    
+    document.getElementById("AnnualRevenue").innerHTML += money(annualRevenue, "RUB");
+    document.getElementById("AnnualExpence").innerHTML += money(annualExpence, "RUB");
+    document.getElementById("AnnualNet").innerHTML += money(annualNet, "RUB");
+    
+    var flowData = {
+        labels: ["Январь", "Февраль", "Март", "Апрель", "Май", "Июнь", "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь"],
+        datasets: [
+            {
+                data: data.revenue,
+                label: "Доходы",
+                backgroundColor: 'rgba(0, 78, 204, 0.4)'
+            },
+            {
+                data: data.expense,
+                label: "Расходы",
+                backgroundColor: 'rgba(255, 0, 0, 0.4)'
+            },
+            {
+                data: data.net,
+                label: "Чистая прибыль",
+                backgroundColor: 'rgba(58, 183, 0, 0.4)'
+            }
+        ]
+    };
+    
+    var barChart = new Chart(ctx, {
+        type: "bar",
+        data: flowData,
+        options: {
+            tooltips: {
+                callbacks: {
+                    label: function(tooltipItem, data) {
+                        var value = data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index];
+                        var type = data.datasets[tooltipItem.datasetIndex].label;
+                        var m = money(value, "RUB");
+                        var signs = ["+", "-", "="];
+                        return " " + signs[tooltipItem.datasetIndex] + m;
+                    }
+                }
+            }
+        }
+    });
+
+});
+        </script>
+    </body>
+</html>

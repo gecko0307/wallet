@@ -1,0 +1,43 @@
+<html lang="ru">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+        <meta name="Description" content="Wallet"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="shortcut icon" href="favicon.ico" type="image/x-icon"/>
+        <title>Wallet - Новый счет</title>
+        <link rel="stylesheet" href="style.css" Type="text/css"/>
+    </head>
+    <body>
+        <div class="header">
+            <p><a href="/">← К списку счетов</a><p>
+        </div>
+        <div class="content">
+        
+        <div class="form">
+            <h1>Создание нового счета</h1>
+            <form id="NewAccountForm" method="post" action="/newAccount" accept-charset="UTF-8">
+                <p><b>Название:</b><br>
+                    <input id="NewAccountInputName" name="name" type="text" size="50" style="width:400px" required>
+                </p>
+                <p><b>Описание (необязательно):</b><br>
+                    <textarea id="NewAccountTextAreaDescription" name="description" cols="50" rows="4" style="width:400px"></textarea>
+                </p>
+                <p><b>Валюта:</b><br>
+                    <div class="selectdiv" style="width:200px">
+                    <select id="NewAccountSelectCurrency" name="currency" size="1" required>
+                        <option value="USD">Доллар США</option>
+                        <option value="EUR">Евро</option>
+                        <option value="RUB" selected>Российский рубль</option>
+                    </select>
+                    </div>
+                </p>
+                <p><b>Курс валюты к рублю:</b><br>
+                    <input id="NewAccountInputExchangeRate" name="exchangeRate" type="number" min="0.00" step="0.01" value="1.00" style="width:200px" required>
+                </p>
+                <input id="NewAccountButtonSubmit" type="submit" value="✔️ Создать">
+                <button onclick="document.location = '/';">❌ Отмена</button>
+            </form>
+        </div>
+        </div>
+    </body>
+</html>

@@ -1,2 +1,2 @@
-# wallet
-Personal accounting software
+# Wallet
+Personal accounting web application written in Python 3.7 using Bottle framework.

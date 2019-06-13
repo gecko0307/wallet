@@ -1,0 +1,6 @@
+{
+    "name": "Default",
+    "description": "",
+    "reportCurrency": "RUB",
+    "assets": "assets.db"
+}
