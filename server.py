@@ -56,6 +56,8 @@ def profileData(db):
             'appInfo': Config.appInfo
         },
         'totalBalance': 0,
+        'monthRevenue': 0,
+        'monthExpense': 0,
         'reportCurrency': 'RUB'
     })
     query = select('Accounts')
@@ -67,6 +69,14 @@ def profileData(db):
         cursor = db.execute(query)
         for transaction in cursor.fetchall():
             accountBalance += transaction['VALUE']
+            if transaction['CATEGORY'] != 'notrack':
+                d = datetime.strptime(transaction['DATETIME'], '%Y-%m-%d %H:%M:%S')
+                if d.month == datetime.today().month:
+                    v = transaction['VALUE'] * account['REPORT_EXCHANGE_RATE']
+                    if v > 0:
+                        data.monthRevenue += v
+                    else:
+                        data.monthExpense += -v
         acc = NestedNamespace({
             'id': account['ID'],
             'name': account['NAME'],
@@ -77,7 +87,7 @@ def profileData(db):
         })
         data.accounts.append(acc)
         data.totalBalance += accountBalance * account['REPORT_EXCHANGE_RATE']
-    
+        
     return data
 
 def accountData(id, db):

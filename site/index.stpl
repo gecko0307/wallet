@@ -17,6 +17,12 @@
         <h3>
             {{ money(data.totalBalance, 'RUB') }}
         </h3>
+        <h4>
+            За месяц: 
+            <span style="color:#379683">+{{ money(data.monthRevenue, 'RUB') }}</span> 
+            <span style="color:#e24444">-{{ money(data.monthExpense, 'RUB') }}</span>
+        </4>
+        <br><br>
         
         <table class="accounts-table">
         % for account in sorted(data.accounts, key = lambda x: x.name):
