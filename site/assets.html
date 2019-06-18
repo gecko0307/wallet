@@ -28,7 +28,7 @@
         <script>
 var ctx = document.getElementById("myChart").getContext("2d");
 
-loadJSON("/balance.json", function(json) {    
+loadJSON("/assets.json", function(json) {    
     var data = JSON.parse(json);
     
     document.getElementById("TotalBalance").innerHTML += money(data.totalBalance, "RUB");

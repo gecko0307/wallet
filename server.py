@@ -299,8 +299,8 @@ def deleteTransaction(db):
 #
 # Reports
 #
-@bottle.route('/balance.json')
-def balanceJson(db):
+@bottle.route('/assets.json')
+def assetsJson(db):
     data = {
         'accounts': [],
         'labels': [],
