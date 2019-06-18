@@ -13,7 +13,7 @@
             <p><a href="/">← К списку счетов</a><p>
         </div>
         <div class="content">
-        <h4 style="text-align:center">Доходы</h4>
+        <h1>Доходы</h1>
         
         <div id="report">
             <canvas id="myChart"></canvas>
@@ -57,6 +57,9 @@ loadJSON("/revenue.json", function(json) {
             ]
         },
         options: {
+            legend: {
+                position: "right"
+            },
             tooltips: {
                 callbacks: {
                     label: function(tooltipItem, data) {

@@ -13,14 +13,14 @@
             <p><a href="/">← К списку счетов</a><p>
         </div>
         <div class="content">
-        <h4 style="text-align:center">Активы</h4>
+        <h1>Активы</h1>
         
         <div id="report">
             <canvas id="myChart"></canvas>
         </div>
         
         <br>
-        <p id="TotalBalance" style="text-align:center">Сумма активов: </p>
+        <p id="TotalBalance">Сумма активов: </p>
         </div>
         
         <script src="Chart.bundle.min.js"></script>
@@ -70,6 +70,9 @@ loadJSON("/assets.json", function(json) {
             ]
         },
         options: {
+            legend: {
+                position: "right"
+            },
             tooltips: {
                 callbacks: {
                     label: function(tooltipItem, data) {
