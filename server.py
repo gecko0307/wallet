@@ -357,6 +357,26 @@ def flowJson(db):
             data['net'][month] += value
     return data
 
+@bottle.route('/balance.json')
+def balanceJson(db):
+    data = {
+        'balance': [0 for x in range(12)]
+    }
+    query = select('Transactions', ['strftime(\'%Y\', DATETIME) = \'2019\''])
+    query += ' ORDER BY CAST(strftime(\'%m\', DATETIME) AS INTEGER)'
+    cursor = db.execute(query)
+    for trans in cursor.fetchall():
+        d = datetime.strptime(trans['DATETIME'], '%Y-%m-%d %H:%M:%S')
+        month = d.month - 1
+        query = select('Accounts', ["ID='%s'" % trans['ACCOUNT']])
+        cursor = db.execute(query)
+        account = cursor.fetchall()[0]
+        value = trans['VALUE']
+        value *= account['REPORT_EXCHANGE_RATE']
+        for m in range(month, 12):
+            data['balance'][m] += value
+    return data
+
 @bottle.route('/revenue.json')
 def revenueJson(db):
     revenue = dict()

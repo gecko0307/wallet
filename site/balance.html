@@ -1,0 +1,70 @@
+<html lang="ru">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+        <meta name="Description" content="Wallet"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="shortcut icon" href="favicon.ico" type="image/x-icon"/>
+        <title>Wallet - Report</title>
+        <link rel="stylesheet" href="Chart.min.css">
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <div class="header">
+            <p><a href="/">← К списку счетов</a><p>
+        </div>
+        <div class="content">
+        <h4 style="text-align:center">Баланс за 2019</h4>
+        
+        <div id="report">
+            <canvas id="myChart"></canvas>
+        </div>
+        
+        <script src="Chart.bundle.min.js"></script>
+        <script src="frontendutils.js"></script>
+        <script>
+var ctx = document.getElementById("myChart").getContext("2d");
+
+loadJSON("/balance.json", function(json) {
+    var data = JSON.parse(json);
+    
+    var balanceData = {
+        labels: ["Январь", "Февраль", "Март", "Апрель", "Май", "Июнь", "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь"],
+        datasets: [
+            {
+                data: data.balance,
+                label: "Баланс",
+                borderColor: "rgba(58, 183, 0, 1.0)",
+                backgroundColor: "rgba(58, 183, 0, 0.1)"
+            }
+        ]
+    };
+    
+    var barChart = new Chart(ctx, {
+        type: "line",
+        data: balanceData,
+        options: {
+            elements: {
+                line: {
+                    tension: 0
+                }
+            },
+            legend: {
+                display: false
+            },
+            tooltips: {
+                callbacks: {
+                    label: function(tooltipItem, data) {
+                        var value = data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index];
+                        var type = data.datasets[tooltipItem.datasetIndex].label;
+                        var m = money(value, "RUB");
+                        return " " + m;
+                    }
+                }
+            }
+        }
+    });
+
+});
+        </script>
+    </body>
+</html>
