@@ -14,14 +14,14 @@ def currencySymbol(code):
 
 def money(value, currencyCode):
     curr = currencySymbol(currencyCode)
-    return '{:,.2f}'.format(value).replace(',', ' ') + ' ' + curr
+    return '{:,.2f}'.format(value).replace(',', ' ').replace('.', ',') + ' ' + curr
 
 def transactionAmount(value, currencyCode):
     curr = currencySymbol(currencyCode)
     sign = ''
     if value > 0:
         sign = '+'
-    return sign + '{:,.2f}'.format(value).replace(',', ' ') + ' ' + curr
+    return sign + '{:,.2f}'.format(value).replace(',', ' ').replace('.', ',') + ' ' + curr
 
 def datetimeFromStr(dts):
     return datetime.datetime.strptime(dts, '%Y-%m-%d %H:%M:%S')

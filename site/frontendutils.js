@@ -35,7 +35,7 @@ function currencySymbol(code) {
 function money(value, currencyCode) {
     var curr = currencySymbol(currencyCode);
     var v = value.toFixed(2);
-    return v.replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1 ') + ' ' + curr
+    return v.replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1 ').replace(".", ",") + ' ' + curr
 }
 
 function category(identifier) {
