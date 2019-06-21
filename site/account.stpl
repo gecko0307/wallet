@@ -90,7 +90,7 @@
                             <option value="hobby">Хобби и творчество</option>
                             <option value="salary">Зарплата</option>
                             <option value="ecommerce">Э-коммерция</option>
-                            <option value="сrowdfunding">Краудфандинг</option>
+                            <option value="crowdfunding">Краудфандинг</option>
                             <option value="interest">Проценты от банков</option>
                             <option value="other">Прочее</option>
                             </select>
