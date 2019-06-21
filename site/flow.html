@@ -19,9 +19,12 @@
             <canvas id="myChart"></canvas>
         </div>
         <br>
-        <p id="AnnualRevenue">Годовой доход: </p>
-        <p id="AnnualExpence">Годовой расход: </p>
-        <p id="AnnualNet">Годовой чистый доход: </p>
+        <p id="AnnualRevenue" style="color:#004ecc">Годовой доход: </p>
+        <p id="AnnualExpence" style="color:#e24444">Годовой расход: </p>
+        <p id="AnnualNet" style="color:#379683">Годовой чистый доход: </p>
+        <p id="AverageMonthlyRevenue" style="color:#004ecc">Среднемесячный доход: </p>
+        <p id="AverageMonthlyExpence" style="color:#e24444">Среднемесячный расход: </p>
+        <p id="AverageMonthlyNet" style="color:#379683">Среднемесячный чистый доход: </p>
         </div>
         
         <script src="Chart.bundle.min.js"></script>
@@ -49,6 +52,12 @@ loadJSON("/flow.json", function(json) {
     document.getElementById("AnnualRevenue").innerHTML += money(annualRevenue, "RUB");
     document.getElementById("AnnualExpence").innerHTML += money(annualExpence, "RUB");
     document.getElementById("AnnualNet").innerHTML += money(annualNet, "RUB");
+    
+    var d = new Date();
+    var numMonths = d.getMonth() + 1;
+    document.getElementById("AverageMonthlyRevenue").innerHTML += money(annualRevenue / numMonths, "RUB");
+    document.getElementById("AverageMonthlyExpence").innerHTML += money(annualExpence / numMonths, "RUB");
+    document.getElementById("AverageMonthlyNet").innerHTML += money(annualNet / numMonths, "RUB");
     
     var flowData = {
         labels: ["Январь", "Февраль", "Март", "Апрель", "Май", "Июнь", "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь"],
