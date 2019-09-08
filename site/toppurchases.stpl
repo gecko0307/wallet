@@ -1,0 +1,97 @@
+<html lang="ru">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+        <meta name="Description" content="Wallet"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="shortcut icon" href="favicon.gif" type="image/x-icon"/>
+        <title>Wallet - Report</title>
+        <link rel="stylesheet" href="style.css">
+        <style>
+.rating-table {
+    width: 100%;
+    table-layout: fixed;
+    border: none;
+    border-collapse: collapse;
+    margin-bottom: 10px;
+}
+
+.rating-table tr:nth-child(odd) {
+    background-color: #fafafa;
+}
+
+.rating-table tr:nth-child(even) {
+    background: #fff;
+}
+
+.rating-table tr:first-child th { 
+    background-color: #edf5e1;
+    font-weight: bold;
+    color: #379683;
+}
+
+.rating-table th {
+    text-align: left;
+    font-weight: normal;
+    padding: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.rating-table th {
+    border-bottom: 1px solid #ddd;
+}
+
+.rating-table tr:last-child th {
+    border-bottom: none;
+}
+        </style>
+    </head>
+    <body>
+        <div class="header">
+            <p><a href="/">← К списку счетов</a><p>
+        </div>
+        <div class="content">
+        <h1>Топ-10 покупок</h1>
+            <table id="purchases-table" class="rating-table">
+                <colgroup>
+                    <col style="width:75%;"/>
+                    <col style="width:15%;"/>
+                    <col style="width:10%;"/>
+                </colgroup>
+                <tr>
+                    <th>Покупка</th>
+                    <th>Сумма</th>
+                    <th>Дата</th>
+                </tr>
+            </table>
+        </div>
+        <script src="frontendutils.js"></script>
+        <script>
+var table = document.getElementById("purchases-table");
+
+loadJSON("/toppurchases.json", function(json) {    
+    var data = JSON.parse(json);
+
+    for (var i = 0; i < data.purchases.length; i++) {
+        var purchase = data.purchases[i];
+        
+        var tr = document.createElement("tr");
+        
+        var thDescription = document.createElement("th");
+        thDescription.innerHTML = purchase.description;
+        tr.appendChild(thDescription);
+        
+        var thValue = document.createElement("th");
+        thValue.innerHTML = money(purchase.value, 'RUB');
+        tr.appendChild(thValue);
+        
+        var thDate = document.createElement("th");
+        thDate.innerHTML = purchase.date;
+        tr.appendChild(thDate);
+        
+        table.appendChild(tr);
+    }
+});
+        </script>
+    </body>
+</html>

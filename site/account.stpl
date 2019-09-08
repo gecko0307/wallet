@@ -41,6 +41,14 @@
         <p><b>Транзакции:</b></p>
         
         <table class="transactions-table">
+            <colgroup>
+                <col style="width:10%;"/>
+                <col style="width:22%;"/>
+                <col style="width:33%;"/>
+                <col style="width:15%;"/>
+                <col style="width:20%;"/>
+            </colgroup>
+            
             <tr>
                 <th>Дата</th> 
                 <th>Категория</th> 
@@ -68,31 +76,38 @@
             <form id="NewTransactionForm" method="post" action="/newTransaction?account={{data.account.id}}" accept-charset="utf-8">
                 <p style="margin-bottom:0"><b>Создать транзакцию:</b></p>
                 <table class="new-transcation-table">
+                    <colgroup>
+                        <col style="width:15%;"/>
+                        <col style="width:20%;"/>
+                        <col style="width:30%;"/>
+                        <col style="width:15%;"/>
+                        <col style="width:20%;"/>
+                    </colgroup>
                     <tr>
                         <th><input type="date" id="NewTransactionInputDate" name="date" title="Дата транзакции" required></th>
                         <th><div class="selectdiv"><select id="NewTransactionInputCategory" name="category" size="1" title="Категория транзакции">
-                            <option value="unspecified" selected>[Не выбрано]</option>
-                            <option value="notrack">[Вне отчетности]</option>
-                            <option value="charity">Благотворительность</option>
-                            <option value="household">Бытовые товары</option>
-                            <option value="lodging">Жилье</option>
-                            <option value="books">Книги</option>
-                            <option value="music">Музыка</option>
-                            <option value="culture">Культурный досуг</option>
-                            <option value="catering">Общепит</option>
-                            <option value="clothes">Одежда</option>
-                            <option value="gifts">Подарки</option>
-                            <option value="food">Продукты питания</option>
-                            <option value="communication">Связь</option>
-                            <option value="software">Софт, игры</option>
-                            <option value="tech">Техника</option>
-                            <option value="transport">Транспорт</option>
-                            <option value="hobby">Хобби и творчество</option>
-                            <option value="salary">Зарплата</option>
-                            <option value="ecommerce">Э-коммерция</option>
-                            <option value="crowdfunding">Краудфандинг</option>
-                            <option value="interest">Проценты от банков</option>
-                            <option value="other">Прочее</option>
+                            <option value="unspecified" selected>❓ [Не выбрано]</option>
+                            <option value="notrack">❔ [Вне отчетности]</option>
+                            <option value="charity">🎗️ Благотворительность</option>
+                            <option value="household">🛀 Бытовые товары</option>
+                            <option value="lodging">🏠 Жилье</option>
+                            <option value="books">📚 Книги</option>
+                            <option value="music">🎵 Музыка</option>
+                            <option value="culture">🎭 Культурный досуг</option>
+                            <option value="catering">🍔 Общепит</option>
+                            <option value="clothes">👔 Одежда</option>
+                            <option value="gifts">🎁 Подарки</option>
+                            <option value="food">🍏 Продукты питания</option>
+                            <option value="communication">📱 Связь</option>
+                            <option value="software">🎮 Софт, игры</option>
+                            <option value="tech">💻 Техника</option>
+                            <option value="transport">🚗 Транспорт</option>
+                            <option value="hobby">🎨 Хобби и творчество</option>
+                            <option value="salary">💼 Зарплата</option>
+                            <option value="ecommerce">💰 Э-коммерция</option>
+                            <option value="crowdfunding">💖 Краудфандинг</option>
+                            <option value="interest">💵 Проценты от банков</option>
+                            <option value="other">❓ Прочее</option>
                             </select>
                         </div></th>
                         <th><input id="NewTransactionInputDescription" name="description" type="text" placeholder="Описание транзакции"></th> 

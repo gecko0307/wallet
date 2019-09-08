@@ -299,6 +299,20 @@ def deleteTransaction(db):
 #
 # Reports
 #
+
+@bottle.route('/assets')
+def assets(db):
+    year = datetime.now().year
+    if 'year' in request.query:
+        year = int(request.query['year'])
+    d = NestedNamespace({
+        'year': year
+    })
+    if d != None:
+        return bottle.template(stpl('assets'), data = d)
+    else:
+        bottle.redirect('/404.html')
+
 @bottle.route('/assets.json')
 def assetsJson(db):
     data = {
@@ -331,6 +345,19 @@ def assetsJson(db):
     
     return data
 
+@bottle.route('/flow')
+def flow(db):
+    year = datetime.now().year
+    if 'year' in request.query:
+        year = int(request.query['year'])
+    d = NestedNamespace({
+        'year': year
+    })
+    if d != None:
+        return bottle.template(stpl('flow'), data = d)
+    else:
+        bottle.redirect('/404.html')
+
 @bottle.route('/flow.json')
 def flowJson(db):
     data = {
@@ -338,7 +365,10 @@ def flowJson(db):
         'expense': [0 for x in range(12)],
         'net': [0 for x in range(12)]
     }
-    query = select('Transactions', ['strftime(\'%Y\', DATETIME) = \'2019\''])
+    year = datetime.now().year
+    if 'year' in request.query:
+        year = request.query['year']
+    query = select('Transactions', ['strftime(\'%Y\', DATETIME) = \'' + str(year) + '\''])
     query += ' ORDER BY CAST(strftime(\'%m\', DATETIME) AS INTEGER)'
     cursor = db.execute(query)
     for trans in cursor.fetchall():
@@ -357,12 +387,28 @@ def flowJson(db):
             data['net'][month] += value
     return data
 
+@bottle.route('/balance')
+def flow(db):
+    year = datetime.now().year
+    if 'year' in request.query:
+        year = int(request.query['year'])
+    d = NestedNamespace({
+        'year': year
+    })
+    if d != None:
+        return bottle.template(stpl('balance'), data = d)
+    else:
+        bottle.redirect('/404.html')
+
 @bottle.route('/balance.json')
 def balanceJson(db):
     data = {
         'balance': [0 for x in range(12)]
     }
-    query = select('Transactions', ['strftime(\'%Y\', DATETIME) = \'2019\''])
+    year = datetime.now().year
+    if 'year' in request.query:
+        year = request.query['year']
+    query = select('Transactions', ['strftime(\'%Y\', DATETIME) = \'' + str(year) + '\''])
     query += ' ORDER BY CAST(strftime(\'%m\', DATETIME) AS INTEGER)'
     cursor = db.execute(query)
     for trans in cursor.fetchall():
@@ -376,6 +422,19 @@ def balanceJson(db):
         for m in range(month, 12):
             data['balance'][m] += value
     return data
+
+@bottle.route('/revenue')
+def revenue(db):
+    year = datetime.now().year
+    if 'year' in request.query:
+        year = int(request.query['year'])
+    d = NestedNamespace({
+        'year': year
+    })
+    if d != None:
+        return bottle.template(stpl('revenue'), data = d)
+    else:
+        bottle.redirect('/404.html')
 
 @bottle.route('/revenue.json')
 def revenueJson(db):
@@ -400,6 +459,19 @@ def revenueJson(db):
         'revenue': list(revenue.values())
     }
 
+@bottle.route('/expences')
+def expences(db):
+    year = datetime.now().year
+    if 'year' in request.query:
+        year = int(request.query['year'])
+    d = NestedNamespace({
+        'year': year
+    })
+    if d != None:
+        return bottle.template(stpl('expences'), data = d)
+    else:
+        bottle.redirect('/404.html')
+
 @bottle.route('/expences.json')
 def expencesJson(db):
     expences = dict()
@@ -423,8 +495,58 @@ def expencesJson(db):
         'expences': list(expences.values())
     }
 
+@bottle.route('/toppurchases')
+def toppurchases(db):
+    year = datetime.now().year
+    if 'year' in request.query:
+        year = int(request.query['year'])
+    d = NestedNamespace({
+        'year': year
+    })
+    if d != None:
+        return bottle.template(stpl('toppurchases'), data = d)
+    else:
+        bottle.redirect('/404.html')
+
+@bottle.route('/toppurchases.json')
+def topPurchasesJson(db):
+    query = select('Transactions')
+    cursor = db.execute(query)
+    purchases = []
+    for trans in cursor.fetchall():
+        if trans['VALUE'] > 0:
+            continue
+        if(trans['CATEGORY'] == 'household' or 
+           trans['CATEGORY'] == 'books' or
+           trans['CATEGORY'] == 'music' or
+           trans['CATEGORY'] == 'culture' or
+           trans['CATEGORY'] == 'catering' or
+           trans['CATEGORY'] == 'clothes' or
+           trans['CATEGORY'] == 'gifts' or
+           trans['CATEGORY'] == 'food' or
+           trans['CATEGORY'] == 'software' or
+           trans['CATEGORY'] == 'tech' or
+           trans['CATEGORY'] == 'transport' or
+           trans['CATEGORY'] == 'hobby'):
+            query = select('Accounts', ["ID='%s'" % trans['ACCOUNT']])
+            cursor = db.execute(query)
+            account = cursor.fetchall()[0]
+            value = trans['VALUE']
+            value *= account['REPORT_EXCHANGE_RATE']
+            d = datetime.strptime(trans['DATETIME'], '%Y-%m-%d %H:%M:%S')
+            purchases.append({
+                'description': trans['DESCRIPTION'],
+                'value': -value,
+                'date': d.strftime('%d.%m.%Y')
+            })
+    sortedPurchases = sorted(purchases, key = lambda k: k['value'], reverse = True)
+    topPurchases = sortedPurchases[0:10]
+    return {
+        'purchases': topPurchases
+    }
+
 def runBrowser():
-    url = 'http://127.0.0.1:8080/'
+    url = 'http://0.0.0.0:8000/'
     if sys.platform == 'win32':
         os.startfile(url)
     elif sys.platform == 'darwin':
@@ -438,4 +560,4 @@ def runBrowser():
 #browserThread = threading.Thread(target = runBrowser)
 #browserThread.start()
 
-bottle.run(host = 'localhost', port = 8080)
+bottle.run(host = '0.0.0.0', port = 8080)

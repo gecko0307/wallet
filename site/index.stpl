@@ -25,6 +25,11 @@
         <br><br>
         
         <table class="accounts-table">
+            <colgroup>
+                <col style="width:50%;"/>
+                <col style="width:30%;"/>
+                <col style="width:20%;"/>
+            </colgroup>
         % for account in sorted(data.accounts, key = lambda x: x.name):
             <tr class="clickablerow" onclick="document.location = '/account?id={{account.id}}';">
                 <th><a href="/account?id={{account.id}}">{{ account.name }}</a></th> 
@@ -40,12 +45,12 @@
         </table>
         
         <button onclick="document.location = '/createaccount';">💲 Создать счет</button>
-        <button onclick="document.location = '/assets.html';">📊 Активы</button>
-        <button onclick="document.location = '/balance.html';">📊 Баланс</button>
-        <button onclick="document.location = '/flow.html';">📊 Денежный поток</button>
-        <button onclick="document.location = '/revenue.html';">📊 Доходы</button>
-        <button onclick="document.location = '/expences.html';">📊 Расходы</button>
-
+        <button onclick="document.location = '/assets';">📊 Активы</button>
+        <button onclick="document.location = '/balance';">📊 Баланс</button>
+        <button onclick="document.location = '/flow';">📊 Денежный поток</button>
+        <button onclick="document.location = '/revenue';">📊 Доходы</button>
+        <button onclick="document.location = '/expences';">📊 Расходы</button>
+        <button onclick="document.location = '/toppurchases';">🛒 Топ-10 покупок</button>
         </div>
     </body>
 </html>

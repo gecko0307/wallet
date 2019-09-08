@@ -45,7 +45,6 @@ function category(identifier) {
         'charity': 'Благотворительность',
         'household': 'Бытовые товары', 
         'lodging': 'Жилье', 
-        'salary': 'Зарплата',
         'books': 'Книги', 
         'music': 'Музыка', 
         'culture': 'Культурный досуг', 
