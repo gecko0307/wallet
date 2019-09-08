@@ -545,19 +545,28 @@ def topPurchasesJson(db):
         'purchases': topPurchases
     }
 
-def runBrowser():
-    url = 'http://0.0.0.0:8000/'
-    if sys.platform == 'win32':
-        os.startfile(url)
-    elif sys.platform == 'darwin':
-        subprocess.Popen(['open', url])
-    else:
-        try:
-            subprocess.Popen(['xdg-open', url])
-        except OSError:
-            print('Please, open a browser on: ' + url)
+def serverMain():
+    bottle.run(host = '0.0.0.0', port = 8080)
 
-#browserThread = threading.Thread(target = runBrowser)
-#browserThread.start()
+serverThread = threading.Thread(target=serverMain)
+serverThread.daemon = True
+serverThread.start()
 
-bottle.run(host = '0.0.0.0', port = 8080)
+from cefpython3 import cefpython as cef
+import platform
+import sys
+
+def cefMain():
+    sys.excepthook = cef.ExceptHook  # To shutdown all CEF processes on error
+    cef.Initialize()
+    browser = cef.CreateBrowserSync(url="http://localhost:8080/", window_title="Wallet")
+    browser.SetBounds(0, 0, 1280, 900)
+    browser.SetClientHandler(LifespanHandler())
+    cef.MessageLoop()
+    cef.Shutdown()
+
+class LifespanHandler(object):
+    def OnBeforeClose(self, browser):
+        print("shutdown")
+
+cefMain()

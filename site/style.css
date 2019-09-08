@@ -23,7 +23,7 @@
 html, body {
     padding: 0;
     margin: 0;
-    background-color: #cccccc;
+    background-color: #edf5e1;
     width: 100%;
     height: 100%;
 }
@@ -65,7 +65,7 @@ body, table, input, select, button {
     padding: 50px;
     padding-top: 60px;
     box-sizing: border-box;
-    box-shadow: 0 0 50px rgba(0,0,0,0.2);
+    /*box-shadow: 0 0 50px rgba(0,0,0,0.2);*/
     color: #333;
 }
 
