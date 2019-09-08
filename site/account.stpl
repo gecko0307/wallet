@@ -77,9 +77,9 @@
                 <p style="margin-bottom:0"><b>Создать транзакцию:</b></p>
                 <table class="new-transcation-table">
                     <colgroup>
-                        <col style="width:15%;"/>
+                        <col style="width:16%;"/>
                         <col style="width:20%;"/>
-                        <col style="width:30%;"/>
+                        <col style="width:29%;"/>
                         <col style="width:15%;"/>
                         <col style="width:20%;"/>
                     </colgroup>
