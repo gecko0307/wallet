@@ -96,6 +96,35 @@ loadJSON("/flow.json?year={{data.year}}", function(json) {
                         return " " + signs[tooltipItem.datasetIndex] + m;
                     }
                 }
+            },
+            onClick: function(event, array) {
+                var activeElement = barChart.getElementAtEvent(event);
+                var month = activeElement[0]._index;
+                var dataset = activeElement[0]._datasetIndex;
+                if (dataset == 0) {
+                    var url = "/monthrevenue?year={{data.year}}&month=" + month;
+                    console.log(url);
+                    window.location.replace(url);
+                }
+                else if (dataset == 1) {
+                    var url = "/monthexpences?year={{data.year}}&month=" + month;
+                    console.log(url);
+                    window.location.replace(url);
+                }
+            },
+            hover: {
+                onHover: function(event) {
+                    var activeElement = barChart.getElementAtEvent(event);
+                    if (activeElement.length) {
+                        var dataset = activeElement[0]._datasetIndex;
+                        if (dataset == 0 || dataset == 1)
+                            event.target.style.cursor = "pointer";
+                        else
+                            event.target.style.cursor = "default";
+                    }
+                    else
+                        event.target.style.cursor = "default";
+                }
             }
         }
     });
