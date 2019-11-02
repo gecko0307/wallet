@@ -23,29 +23,29 @@
                     <tr>
                         <th><input type="date" id="NewTransactionInputDate" name="date" title="Дата транзакции" value="{{ datetimeFromStr(data.transaction.date).strftime('%Y-%m-%d') }}" required></th>
                         <th><div class="selectdiv"><select id="NewTransactionInputCategory" name="category" size="1" title="Категория транзакции">
-                            <option value="unspecified" {{ 'selected' if data.transaction.category == 'unspecified' else '' }}>[Не выбрано]</option>
-                            <option value="notrack" {{ 'selected' if data.transaction.category == 'notrack' else '' }}>[Вне отчетности]</option>
-                            <option value="charity" {{ 'selected' if data.transaction.category == 'charity' else '' }}>Благотворительность</option>
-                            <option value="household" {{ 'selected' if data.transaction.category == 'household' else '' }}>Бытовые товары</option>
-                            <option value="lodging" {{ 'selected' if data.transaction.category == 'lodging' else '' }}>Жилье</option>
-                            <option value="salary" {{ 'selected' if data.transaction.category == 'salary' else '' }}>Зарплата</option>
-                            <option value="books" {{ 'selected' if data.transaction.category == 'books' else '' }}>Книги</option>
-                            <option value="music" {{ 'selected' if data.transaction.category == 'music' else '' }}>Музыка</option>
-                            <option value="culture" {{ 'selected' if data.transaction.category == 'culture' else '' }}>Культурный досуг</option>
-                            <option value="catering" {{ 'selected' if data.transaction.category == 'catering' else '' }}>Общепит</option>
-                            <option value="clothes" {{ 'selected' if data.transaction.category == 'clothes' else '' }}>Одежда</option>
-                            <option value="gifts" {{ 'selected' if data.transaction.category == 'gifts' else '' }}>Подарки</option>
-                            <option value="food" {{ 'selected' if data.transaction.category == 'food' else '' }}>Продукты питания</option>
-                            <option value="communication" {{ 'selected' if data.transaction.category == 'communication' else '' }}>Связь</option>
-                            <option value="software" {{ 'selected' if data.transaction.category == 'software' else '' }}>Софт, игры</option>
-                            <option value="tech" {{ 'selected' if data.transaction.category == 'tech' else '' }}>Техника</option>
-                            <option value="transport" {{ 'selected' if data.transaction.category == 'transport' else '' }}>Транспорт</option>
-                            <option value="hobby" {{ 'selected' if data.transaction.category == 'hobby' else '' }}>Хобби и творчество</option>
-                            <option value="salary" {{ 'selected' if data.transaction.category == 'salary' else '' }}>Зарплата</option>
-                            <option value="ecommerce" {{ 'selected' if data.transaction.category == 'ecommerce' else '' }}>Э-коммерция</option>
-                            <option value="crowdfunding" {{ 'selected' if data.transaction.category == 'crowdfunding' else '' }}>Краудфандинг</option>
-                            <option value="interest" {{ 'selected' if data.transaction.category == 'interest' else '' }}>Проценты от банков</option>
-                            <option value="other" {{ 'selected' if data.transaction.category == 'other' else '' }}>Прочее</option>
+                            <option value="unspecified" {{ 'selected' if data.transaction.category == 'unspecified' else '' }}>❓ [Не указано]</option>
+                            <option value="notrack" {{ 'selected' if data.transaction.category == 'notrack' else '' }}>❔ [Вне отчетности]</option>
+                            <option value="charity" {{ 'selected' if data.transaction.category == 'charity' else '' }}>🎗 Благотворительность</option>
+                            <option value="household" {{ 'selected' if data.transaction.category == 'household' else '' }}>🛀 Бытовые товары</option>
+                            <option value="lodging" {{ 'selected' if data.transaction.category == 'lodging' else '' }}>🏠 Жилье</option>
+                            <option value="books" {{ 'selected' if data.transaction.category == 'books' else '' }}>📚 Книги</option>
+                            <option value="music" {{ 'selected' if data.transaction.category == 'music' else '' }}>🎵 Музыка</option>
+                            <option value="culture" {{ 'selected' if data.transaction.category == 'culture' else '' }}>🎭 Культурный досуг</option>
+                            <option value="catering" {{ 'selected' if data.transaction.category == 'catering' else '' }}>🍔 Общепит</option>
+                            <option value="clothes" {{ 'selected' if data.transaction.category == 'clothes' else '' }}>👔 Одежда</option>
+                            <option value="cosmetics" {{ 'selected' if data.transaction.category == 'cosmetics' else '' }}>💄 Косметика</option>
+                            <option value="gifts" {{ 'selected' if data.transaction.category == 'gifts' else '' }}>🎁 Подарки</option>
+                            <option value="food" {{ 'selected' if data.transaction.category == 'food' else '' }}>🍏 Продукты питания</option>
+                            <option value="communication" {{ 'selected' if data.transaction.category == 'communication' else '' }}>📱 Связь</option>
+                            <option value="software" {{ 'selected' if data.transaction.category == 'software' else '' }}>🎮 Софт, игры</option>
+                            <option value="tech" {{ 'selected' if data.transaction.category == 'tech' else '' }}>💻 Техника</option>
+                            <option value="transport" {{ 'selected' if data.transaction.category == 'transport' else '' }}>🚗 Транспорт</option>
+                            <option value="hobby" {{ 'selected' if data.transaction.category == 'hobby' else '' }}>🎨 Хобби и творчество</option>
+                            <option value="salary" {{ 'selected' if data.transaction.category == 'salary' else '' }}>💼 Зарплата</option>
+                            <option value="ecommerce" {{ 'selected' if data.transaction.category == 'ecommerce' else '' }}>💰 Э-коммерция</option>
+                            <option value="crowdfunding" {{ 'selected' if data.transaction.category == 'crowdfunding' else '' }}>💖 Краудфандинг</option>
+                            <option value="interest" {{ 'selected' if data.transaction.category == 'interest' else '' }}>💵 Проценты от банков</option>
+                            <option value="other" {{ 'selected' if data.transaction.category == 'other' else '' }}>❓ Прочее</option>
                             </select>
                         </div></th>
                         <th><input id="NewTransactionInputDescription" name="description" type="text" value="{{data.transaction.description}}" placeholder="Описание транзакции"></th> 

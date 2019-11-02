@@ -629,7 +629,8 @@ def topPurchasesJson(db):
            trans['CATEGORY'] == 'software' or
            trans['CATEGORY'] == 'tech' or
            trans['CATEGORY'] == 'transport' or
-           trans['CATEGORY'] == 'hobby'):
+           trans['CATEGORY'] == 'hobby' or
+           trans['CATEGORY'] == 'cosmetics'):
             query = select('Accounts', ["ID='%s'" % trans['ACCOUNT']])
             cursor = db.execute(query)
             account = cursor.fetchall()[0]

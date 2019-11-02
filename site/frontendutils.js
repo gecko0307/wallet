@@ -50,6 +50,7 @@ function category(identifier) {
         'culture': 'Культурный досуг', 
         'catering': 'Общепит', 
         'clothes': 'Одежда', 
+        'cosmetics': 'Косметика', 
         'gifts': 'Подарки', 
         'food': 'Продукты питания', 
         'communication': 'Связь', 

@@ -96,6 +96,7 @@
                             <option value="culture">🎭 Культурный досуг</option>
                             <option value="catering">🍔 Общепит</option>
                             <option value="clothes">👔 Одежда</option>
+                            <option value="cosmetics">💄 Косметика</option>
                             <option value="gifts">🎁 Подарки</option>
                             <option value="food">🍏 Продукты питания</option>
                             <option value="communication">📱 Связь</option>
