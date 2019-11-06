@@ -99,15 +99,18 @@
                             <option value="cosmetics">💄 Косметика</option>
                             <option value="gifts">🎁 Подарки</option>
                             <option value="food">🍏 Продукты питания</option>
+                            <option value="meds">💊 Лекарства</option>
                             <option value="communication">📱 Связь</option>
                             <option value="software">🎮 Софт, игры</option>
                             <option value="tech">💻 Техника</option>
                             <option value="transport">🚗 Транспорт</option>
                             <option value="hobby">🎨 Хобби и творчество</option>
                             <option value="salary">💼 Зарплата</option>
+                            <option value="fee">💲 Гонорар</option>
                             <option value="ecommerce">💰 Э-коммерция</option>
                             <option value="crowdfunding">💖 Краудфандинг</option>
                             <option value="interest">💵 Проценты от банков</option>
+                            <option value="find">💲 Находка</option>
                             <option value="other">❓ Прочее</option>
                             </select>
                         </div></th>

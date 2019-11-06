@@ -36,15 +36,18 @@
                             <option value="cosmetics" {{ 'selected' if data.transaction.category == 'cosmetics' else '' }}>💄 Косметика</option>
                             <option value="gifts" {{ 'selected' if data.transaction.category == 'gifts' else '' }}>🎁 Подарки</option>
                             <option value="food" {{ 'selected' if data.transaction.category == 'food' else '' }}>🍏 Продукты питания</option>
+                            <option value="meds" {{ 'selected' if data.transaction.category == 'meds' else '' }}>💊 Лекарства</option>
                             <option value="communication" {{ 'selected' if data.transaction.category == 'communication' else '' }}>📱 Связь</option>
                             <option value="software" {{ 'selected' if data.transaction.category == 'software' else '' }}>🎮 Софт, игры</option>
                             <option value="tech" {{ 'selected' if data.transaction.category == 'tech' else '' }}>💻 Техника</option>
                             <option value="transport" {{ 'selected' if data.transaction.category == 'transport' else '' }}>🚗 Транспорт</option>
                             <option value="hobby" {{ 'selected' if data.transaction.category == 'hobby' else '' }}>🎨 Хобби и творчество</option>
                             <option value="salary" {{ 'selected' if data.transaction.category == 'salary' else '' }}>💼 Зарплата</option>
+                            <option value="fee" {{ 'selected' if data.transaction.category == 'fee' else '' }}>💲 Гонорар</option>
                             <option value="ecommerce" {{ 'selected' if data.transaction.category == 'ecommerce' else '' }}>💰 Э-коммерция</option>
                             <option value="crowdfunding" {{ 'selected' if data.transaction.category == 'crowdfunding' else '' }}>💖 Краудфандинг</option>
                             <option value="interest" {{ 'selected' if data.transaction.category == 'interest' else '' }}>💵 Проценты от банков</option>
+                            <option value="find" {{ 'selected' if data.transaction.category == 'find' else '' }}>💲 Находка</option>
                             <option value="other" {{ 'selected' if data.transaction.category == 'other' else '' }}>❓ Прочее</option>
                             </select>
                         </div></th>
