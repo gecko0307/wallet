@@ -576,6 +576,7 @@ def monthExpencesJson(db):
     expences = dict()
     query = select('Transactions')
     cursor = db.execute(query)
+    purchases = { }
     for trans in cursor.fetchall():
         if trans['CATEGORY'] != 'notrack':
             d = datetime.strptime(trans['DATETIME'], '%Y-%m-%d %H:%M:%S')
@@ -591,9 +592,21 @@ def monthExpencesJson(db):
                         expences[category] += -value
                     else:
                         expences[category] = -value
+                    if not category in purchases:
+                        purchases[category] = []
+                    purchases[category].append({
+                        'description': trans['DESCRIPTION'],
+                        'value': -value,
+                        'date': d.strftime('%d.%m.%Y')
+                    })
+    for category, purchasesList in purchases.items():
+        sortedPurchases = sorted(purchasesList, key = lambda k: k['value'], reverse = True)
+        topPurchases = sortedPurchases[0:5]
+        purchases[category] = topPurchases
     return {
         'categories': list(expences.keys()),
-        'expences': list(expences.values())
+        'expences': list(expences.values()),
+        'topPurchases': purchases
     }
 
 

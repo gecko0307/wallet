@@ -31,6 +31,7 @@ loadJSON("/monthexpences.json?year={{data.year}}&month={{data.month}}", function
     
     var labels = data.categories;    
     var expences = data.expences;
+    var topPurchases = data.topPurchases;
     var colors = [
         "#ff7a7a", "#ffcf7a", "#8be37d", "#82e6e7", "#96ade0", "#c776f1", 
         "#7acbad", "#f691cc", "#cb9b6f", "#decd70", "#d3ea82", "#b0b799"
@@ -62,6 +63,7 @@ loadJSON("/monthexpences.json?year={{data.year}}&month={{data.month}}", function
                 position: "right"
             },
             tooltips: {
+                displayColors: false,
                 callbacks: {
                     label: function(tooltipItem, data) {
                         var sum = 0;
@@ -73,7 +75,16 @@ loadJSON("/monthexpences.json?year={{data.year}}&month={{data.month}}", function
                         var value = expences[tooltipItem.index];
                         var m = money(value, "RUB");
                         var percentage = (value * 100 / sum).toFixed(2)+"%";
-                        return " " + label + " - " + m + " (" + percentage + ")";
+                        var line1 = " " + label + " - " + m + " (" + percentage + ")";
+                        var lines = [line1, " В том числе:"];
+                        var topPurchasesInCategory = topPurchases[labels[tooltipItem.index]];
+                        for (var i = 0; i < topPurchasesInCategory.length; i++) {
+                            var p = topPurchasesInCategory[i];
+                            var line = " " + p.description;
+                            line += " - " + money(p.value, "RUB");
+                            lines.push(line);
+                        }
+                        return lines;
                     }
                 }
             }
