@@ -78,7 +78,7 @@ loadJSON("/toppurchases.json", function(json) {
         var tr = document.createElement("tr");
         
         var thDescription = document.createElement("th");
-        thDescription.innerHTML = purchase.description;
+        thDescription.innerHTML = categoryIcon(purchase.category) + " " + purchase.description;
         tr.appendChild(thDescription);
         
         var thValue = document.createElement("th");

@@ -68,3 +68,34 @@ function category(identifier) {
         'other': 'Прочее'
     }[identifier];
 }
+
+function categoryIcon(identifier) {
+    return {
+        'unspecified': '❓',
+        'notrack': '❔',
+        'charity': '🎗',
+        'household': '🛀', 
+        'lodging': '🏠', 
+        'books': '📚', 
+        'music': '🎵', 
+        'culture': '🎭', 
+        'catering': '🍔', 
+        'clothes': '👔', 
+        'cosmetics': '💄', 
+        'gifts': '🎁', 
+        'food': '🍏', 
+        'meds': '💊', 
+        'communication': '📱', 
+        'software': '🎮', 
+        'tech': '💻', 
+        'transport': '🚗', 
+        'hobby': '🎨',
+        'salary': '💼',
+        'fee': '💲',
+        'find': '💲',
+        'ecommerce': '💰',
+        'crowdfunding': '💖',
+        'interest': '💵',
+        'other': '❓'
+    }[identifier];
+}

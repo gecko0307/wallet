@@ -21,12 +21,18 @@
             <canvas id="myChart"></canvas>
         </div>
         <br>
-        <p id="AnnualRevenue" style="color:#004ecc">Годовой доход: </p>
-        <p id="AnnualExpence" style="color:#e24444">Годовой расход: </p>
-        <p id="AnnualNet" style="color:#379683">Годовой чистый доход: </p>
-        <p id="AverageMonthlyRevenue" style="color:#004ecc">Среднемесячный доход: </p>
-        <p id="AverageMonthlyExpence" style="color:#e24444">Среднемесячный расход: </p>
-        <p id="AverageMonthlyNet" style="color:#379683">Среднемесячный чистый доход: </p>
+        <p>
+        За год: 
+        <span id="AnnualRevenue" style="color:#004ecc">+</span>
+        <span id="AnnualExpence" style="color:#e24444">-</span>
+        <span id="AnnualNet" style="color:#379683">=</span>
+        </p>
+        <p>
+        В среднем за месяц: 
+        <span id="AverageMonthlyRevenue" style="color:#004ecc">+</span>
+        <span id="AverageMonthlyExpence" style="color:#e24444">-</span>
+        <span id="AverageMonthlyNet" style="color:#379683">=</span>
+        </p>
         </div>
         
         <script src="Chart.bundle.min.js"></script>

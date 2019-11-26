@@ -643,7 +643,8 @@ def topPurchasesJson(db):
            trans['CATEGORY'] == 'tech' or
            trans['CATEGORY'] == 'transport' or
            trans['CATEGORY'] == 'hobby' or
-           trans['CATEGORY'] == 'cosmetics'):
+           trans['CATEGORY'] == 'cosmetics' or
+           trans['CATEGORY'] == 'meds'):
             query = select('Accounts', ["ID='%s'" % trans['ACCOUNT']])
             cursor = db.execute(query)
             account = cursor.fetchall()[0]
@@ -652,6 +653,7 @@ def topPurchasesJson(db):
             d = datetime.strptime(trans['DATETIME'], '%Y-%m-%d %H:%M:%S')
             purchases.append({
                 'description': trans['DESCRIPTION'],
+                'category': trans['CATEGORY'],
                 'value': -value,
                 'date': d.strftime('%d.%m.%Y')
             })
