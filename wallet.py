@@ -600,7 +600,17 @@ def monthExpencesJson(db):
                         'date': d.strftime('%d.%m.%Y')
                     })
     for category, purchasesList in purchases.items():
-        sortedPurchases = sorted(purchasesList, key = lambda k: k['value'], reverse = True)
+        # sum up purchases with same description
+        mimimizedPurchases = []
+        for p in purchasesList:
+            outputPurchase = next((x for x in mimimizedPurchases if x['description'] == p['description']), None)
+            if outputPurchase == None:
+                mimimizedPurchases.append(p)
+            else:
+                outputPurchase['value'] += p['value']
+        
+        # get 5 top purchases
+        sortedPurchases = sorted(mimimizedPurchases, key = lambda k: k['value'], reverse = True)
         topPurchases = sortedPurchases[0:5]
         purchases[category] = topPurchases
     return {

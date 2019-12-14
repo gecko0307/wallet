@@ -13,14 +13,14 @@
             <p><a href="/">← К списку счетов</a><p>
         </div>
         <div class="content">
-        <h1>Активы</h1>
+        <h1>Средства</h1>
         
         <div id="report">
             <canvas id="myChart"></canvas>
         </div>
         
         <br>
-        <p id="TotalBalance">Сумма активов: </p>
+        <p id="TotalBalance">Сумма средств: </p>
         </div>
         
         <script src="Chart.bundle.min.js"></script>
