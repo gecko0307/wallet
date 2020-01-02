@@ -71,7 +71,7 @@ def profileData(db):
             accountBalance += transaction['VALUE']
             if transaction['CATEGORY'] != 'notrack':
                 d = datetime.strptime(transaction['DATETIME'], '%Y-%m-%d %H:%M:%S')
-                if d.month == datetime.today().month:
+                if d.month == datetime.today().month and d.year == datetime.today().year:
                     v = transaction['VALUE'] * account['REPORT_EXCHANGE_RATE']
                     if v > 0:
                         data.monthRevenue += v

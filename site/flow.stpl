@@ -62,7 +62,14 @@ loadJSON("/flow.json?year={{data.year}}", function(json) {
     document.getElementById("AnnualNet").innerHTML += money(annualNet, "RUB");
     
     var d = new Date();
-    var numMonths = d.getMonth() + 1;
+    var numMonths;
+    var currentYear = d.getFullYear();
+    var reportYear = {{ data.year }};
+    if (currentYear == reportYear)
+        numMonths = d.getMonth() + 1;
+    else
+        numMonths = 12;
+    
     document.getElementById("AverageMonthlyRevenue").innerHTML += money(annualRevenue / numMonths, "RUB");
     document.getElementById("AverageMonthlyExpence").innerHTML += money(annualExpence / numMonths, "RUB");
     document.getElementById("AverageMonthlyNet").innerHTML += money(annualNet / numMonths, "RUB");
