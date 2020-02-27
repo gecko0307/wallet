@@ -47,6 +47,7 @@
                             <option value="ecommerce" {{ 'selected' if data.transaction.category == 'ecommerce' else '' }}>💰 Э-коммерция</option>
                             <option value="crowdfunding" {{ 'selected' if data.transaction.category == 'crowdfunding' else '' }}>💖 Краудфандинг</option>
                             <option value="interest" {{ 'selected' if data.transaction.category == 'interest' else '' }}>💵 Проценты от банков</option>
+                            <option value="trading" {{ 'selected' if data.transaction.category == 'trading' else '' }}>📈 Трейдинг</option>
                             <option value="find" {{ 'selected' if data.transaction.category == 'find' else '' }}>💲 Находка</option>
                             <option value="other" {{ 'selected' if data.transaction.category == 'other' else '' }}>❓ Прочее</option>
                             </select>

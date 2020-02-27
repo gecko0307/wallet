@@ -53,6 +53,7 @@ def categoryIcon(identifier):
         'ecommerce': '💰',
         'crowdfunding': '💖',
         'interest': '💵',
+        'trading': '📈',
         'other': '❓'
     }[identifier]
     
@@ -83,6 +84,7 @@ def category(identifier):
         'ecommerce': '💰 Э-коммерция',
         'crowdfunding': '💖 Краудфандинг',
         'interest': '💵 Проценты от банков',
+        'trading': '📈 Трейдинг',
         'other': '❓ Прочее'
     }[identifier]
     

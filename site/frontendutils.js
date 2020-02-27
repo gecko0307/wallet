@@ -65,6 +65,7 @@ function category(identifier) {
         'ecommerce': 'Э-коммерция',
         'crowdfunding': 'Краудфандинг',
         'interest': 'Проценты от банков',
+        'trading': 'Трейдинг',
         'other': 'Прочее'
     }[identifier];
 }
@@ -96,6 +97,7 @@ function categoryIcon(identifier) {
         'ecommerce': '💰',
         'crowdfunding': '💖',
         'interest': '💵',
+        'trading': '📈',
         'other': '❓'
     }[identifier];
 }
