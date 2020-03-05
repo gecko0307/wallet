@@ -99,3 +99,7 @@ venv.bak/
 
 # mypy
 .mypy_cache/
+
+# CEF
+blob_storage/
+webrtc_event_logs/
