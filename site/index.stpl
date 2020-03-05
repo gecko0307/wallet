@@ -1,4 +1,4 @@
-% from backendutils import money
+% from app.utils import money
 <html lang="ru">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>

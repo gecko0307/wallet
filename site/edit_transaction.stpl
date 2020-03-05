@@ -1,4 +1,4 @@
-% from backendutils import money, toFixed, currencySymbol, datetimeFromStr, category
+% from app.utils import money, toFixed, currencySymbol, datetimeFromStr, category
 <html lang="ru">
     <head>
         <meta charset="utf-8">
