@@ -5,4 +5,4 @@ from ..data import *
 @bottle.route('/')
 def index(db):
     d = profileData(db)
-    return bottle.template(stpl('index'), data = d)
+    return bottle.template(load('index.stpl'), data = d)

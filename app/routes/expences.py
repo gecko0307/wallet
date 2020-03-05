@@ -16,7 +16,7 @@ def expences(db):
         'year': year
     })
     if d != None:
-        return bottle.template(stpl('expences'), data = d)
+        return bottle.template(load('expences.stpl'), data = d)
     else:
         bottle.redirect('/404.html')
 

@@ -8,6 +8,6 @@ def index(db):
     accountId = request.query['id']
     d = accountData(accountId, db)
     if d != None:
-        return bottle.template(stpl('account'), data = d)
+        return bottle.template(load('account.stpl'), data = d)
     else:
         bottle.redirect('/404.html')

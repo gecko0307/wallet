@@ -16,7 +16,7 @@ def assets(db):
         'year': year
     })
     if d != None:
-        return bottle.template(stpl('assets'), data = d)
+        return bottle.template(load('assets.stpl'), data = d)
     else:
         bottle.redirect('/404.html')
 

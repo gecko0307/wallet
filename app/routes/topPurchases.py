@@ -16,7 +16,7 @@ def toppurchases(db):
         'year': year
     })
     if d != None:
-        return bottle.template(stpl('toppurchases'), data = d)
+        return bottle.template(load('topPurchases.stpl'), data = d)
     else:
         bottle.redirect('/404.html')
 

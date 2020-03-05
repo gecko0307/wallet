@@ -5,8 +5,8 @@ from datetime import datetime
 from .namespace import *
 from .config import *
 
-def stpl(name):
-    f = io.open('%s/%s.stpl' % (Config.sitePath, name), 'r', encoding = 'utf-8')
+def load(name):
+    f = io.open('%s/%s' % (Config.templatesPath, name), 'r', encoding = 'utf-8')
     s = f.read()
     f.close()
     return s

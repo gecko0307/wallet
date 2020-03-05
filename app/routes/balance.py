@@ -16,7 +16,7 @@ def flow(db):
         'year': year
     })
     if d != None:
-        return bottle.template(stpl('balance'), data = d)
+        return bottle.template(load('balance.stpl'), data = d)
     else:
         bottle.redirect('/404.html')
 

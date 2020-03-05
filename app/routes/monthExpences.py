@@ -20,7 +20,7 @@ def monthExpences(db):
         'month': month
     })
     if d != None:
-        return bottle.template(stpl('monthexpences'), data = d)
+        return bottle.template(load('monthExpences.stpl'), data = d)
     else:
         bottle.redirect('/404.html')
 

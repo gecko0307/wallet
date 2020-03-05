@@ -16,7 +16,7 @@ def revenue(db):
         'year': year
     })
     if d != None:
-        return bottle.template(stpl('revenue'), data = d)
+        return bottle.template(load('revenue.stpl'), data = d)
     else:
         bottle.redirect('/404.html')
 
