@@ -22,8 +22,12 @@ def expences(db):
 
 @bottle.route('/expences.json')
 def expencesJson(db):
+    year = datetime.now().year
+    if 'year' in request.query:
+        year = request.query['year']
     expences = dict()
-    query = select('Transactions')
+    query = select('Transactions', ['strftime(\'%Y\', DATETIME) = \'' + str(year) + '\''])
+    query += ' ORDER BY CAST(strftime(\'%m\', DATETIME) AS INTEGER)'
     cursor = db.execute(query)
     for trans in cursor.fetchall():
         if trans['CATEGORY'] != 'notrack':
