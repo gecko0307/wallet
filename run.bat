@@ -1,1 +1,0 @@
-start python wallet.py
