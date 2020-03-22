@@ -30,7 +30,17 @@ dev_dependencies:
   sqflite:
   path:
   dropdown_formfield:
-
+  flutter_masked_text: ^0.7.0
+  flutter_launcher_icons: "^0.7.0"
+  flutter_datetime_picker:
+  
+flutter_icons:
+  ios: true
+  android: true
+  image_path_ios: "assets/launcher/icon.png"
+  image_path_android: "assets/launcher/icon.png"
+  adaptive_icon_background: "assets/launcher/background.png"
+  adaptive_icon_foreground: "assets/launcher/foreground.png"
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

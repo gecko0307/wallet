@@ -45,14 +45,17 @@ class WalletHomeState extends State<WalletHome>
                         {
                             WalletAccount acc = snapshot.data[index];
                             final tile = ListTile(
-                                title: Text(acc.name ?? "<unknown>"),
-                                subtitle: Text(acc.currency ?? "<unknown>"),
                                 leading: Column(
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: <Widget>[
-                                        Icon(Icons.account_balance_wallet, color: Colors.blue,),
+                                        Icon(
+                                            Icons.account_balance_wallet, 
+                                            color: Colors.blue, 
+                                        ),
                                     ],
                                 ),
+                                title: Text(acc.name ?? "?"),
+                                subtitle: Text(acc.currency ?? "?"),
                                 trailing: Icon(Icons.keyboard_arrow_right),
                             );
                             return InkWell(

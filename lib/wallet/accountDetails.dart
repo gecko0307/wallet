@@ -23,6 +23,36 @@ class WalletAccountDetailsState extends State<WalletAccountDetails>
 {
     //final _formKey = GlobalKey<FormState>();
     
+    final _categoryIcons = {
+        "notrack": "❔",
+        "charity": "🎗",
+        "household": "🛀",
+        "lodging": "🏠",
+        "books": "📚",
+        "music": "🎵",
+        "culture": "🎭",
+        "catering": "🍔",
+        "clothes": "👔",
+        "cosmetics": "💄",
+        "gifts": "🎁",
+        "food": "🍏",
+        "meds": "💊",
+        "communication": "📱",
+        "software": "🎮",
+        "tech": "💻",
+        "transport": "🚗",
+        "hobby": "🎨",
+        "salary": "💼",
+        "fee": "💲",
+        "find": "💲",
+        "ecommerce": "💰",
+        "crowdfunding": "💖",
+        "interest": "💵",
+        "trading": "📈",
+        "other": "❓",
+        "": "❓",
+    };
+    
     final List<WalletAccountMenuItem> _menuItems = <WalletAccountMenuItem>[
         const WalletAccountMenuItem(title: "Удалить счет"),
     ];
@@ -80,8 +110,18 @@ class WalletAccountDetailsState extends State<WalletAccountDetails>
                         {
                             WalletTransaction trans = snapshot.data[index];
                             final tile = ListTile(
-                                title: Text(trans.description ?? "<unknown>"),
-                                trailing: Text(trans.value.toString() ?? "<unknown>"),
+                                leading: Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: <Widget>[
+                                        Text(
+                                            _categoryIcons[trans.category ?? ""] ?? "❓",
+                                            style: DefaultTextStyle.of(context).style.apply(fontSizeFactor: 2.0),
+                                        ),
+                                    ],
+                                ),
+                                title: Text(trans.description ?? "?"),
+                                subtitle: Text(" " + (trans.value.toString() ?? "0.0")),
+                                trailing: Icon(Icons.keyboard_arrow_right),
                             );
                             return InkWell(
                                 child: tile,

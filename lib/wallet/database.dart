@@ -84,7 +84,7 @@ class WalletDatabase
     getTransactions(WalletAccount acc) async
     {
         final db = await database;
-        var res = await db.query("Transactions");
+        var res = await db.query("Transactions", where: "account = ?", whereArgs: [acc.id]);
         return res.isNotEmpty?
         res.map((c) => WalletTransaction.fromMap(c)).toList() :
         [];
