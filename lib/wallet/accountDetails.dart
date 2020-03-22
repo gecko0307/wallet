@@ -1,6 +1,8 @@
 import "package:flutter/material.dart";
 import "./confirmDialog.dart";
+import "./addTransaction.dart";
 import "./account.dart";
+import "./transaction.dart";
 import "./database.dart";
 
 class WalletAccountDetails extends StatefulWidget
@@ -17,13 +19,14 @@ class WalletAccountMenuItem
     const WalletAccountMenuItem({this.title});
 }
 
-final List<WalletAccountMenuItem> _menuItems = <WalletAccountMenuItem>[
-    const WalletAccountMenuItem(title: "Удалить"),
-];
-
 class WalletAccountDetailsState extends State<WalletAccountDetails>
 {
     //final _formKey = GlobalKey<FormState>();
+    
+    final List<WalletAccountMenuItem> _menuItems = <WalletAccountMenuItem>[
+        const WalletAccountMenuItem(title: "Удалить счет"),
+    ];
+    
     void _menuSelect(WalletAccountMenuItem item) async
     {
         await confirmDialog(
@@ -58,6 +61,53 @@ class WalletAccountDetailsState extends State<WalletAccountDetails>
             },
         );
     }
+    
+    transactionsListWidget()
+    {
+        return FutureBuilder(
+            future: WalletDatabase.db.getTransactions(widget.account),
+            builder: (context, snapshot)
+            {
+                if (snapshot.hasError)
+                {
+                    return Text("Error: ${snapshot.error}");
+                }
+                else if (snapshot.hasData)
+                {
+                    return ListView.separated(
+                        itemCount: snapshot.data.length,
+                        itemBuilder: (BuildContext context, int index)
+                        {
+                            WalletTransaction trans = snapshot.data[index];
+                            final tile = ListTile(
+                                title: Text(trans.description ?? "<unknown>"),
+                                trailing: Text(trans.value.toString() ?? "<unknown>"),
+                            );
+                            return InkWell(
+                                child: tile,
+                                onTap: () {
+                                    //transactionDetails(trans);
+                                },
+                            );
+                        },
+                        separatorBuilder: (context, index)
+                        {
+                            return Divider();
+                        },
+                    );
+                }
+                else return Center(child: Text("Нет транзакций"));
+            }
+        );
+    }
+    
+    void addTransaction() async
+    {
+        Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => WalletAddTransaction(account: widget.account)),
+        );
+    }
 
     @override Widget build(BuildContext context)
     {
@@ -66,9 +116,11 @@ class WalletAccountDetailsState extends State<WalletAccountDetails>
                 title: Text(widget.account.name),
                 actions: <Widget>[menu(),],
             ),
-            body: Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: form(context),
+            body: transactionsListWidget(),
+            floatingActionButton: FloatingActionButton(
+                onPressed: addTransaction,
+                tooltip: "Добавить транзакцию",
+                child: Icon(Icons.add),
             ),
         );
     }
