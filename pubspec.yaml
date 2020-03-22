@@ -33,6 +33,7 @@ dev_dependencies:
   flutter_masked_text: ^0.7.0
   flutter_launcher_icons: "^0.7.0"
   flutter_datetime_picker:
+  vibration: ^1.2.4
   
 flutter_icons:
   ios: true

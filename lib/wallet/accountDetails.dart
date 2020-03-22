@@ -1,4 +1,5 @@
 import "package:flutter/material.dart";
+import "package:vibration/vibration.dart";
 import "./confirmDialog.dart";
 import "./addTransaction.dart";
 import "./account.dart";
@@ -123,11 +124,20 @@ class WalletAccountDetailsState extends State<WalletAccountDetails>
                                 subtitle: Text(" " + (trans.value.toString() ?? "0.0")),
                                 trailing: Icon(Icons.keyboard_arrow_right),
                             );
-                            return InkWell(
+                            final inkWell = InkWell(
                                 child: tile,
                                 onTap: () {
                                     //transactionDetails(trans);
                                 },
+                            );
+                            return GestureDetector(
+                                onLongPress: () async {
+                                    print("long press");
+                                    if (await Vibration.hasVibrator()) {
+                                        Vibration.vibrate(duration: 50);
+                                    }
+                                },
+                                child: inkWell,
                             );
                         },
                         separatorBuilder: (context, index)
