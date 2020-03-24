@@ -79,7 +79,7 @@ def category(identifier):
         'transport': '🚗 Транспорт', 
         'hobby': '🎨 Хобби и творчество',
         'salary': '💼 Зарплата',
-        'fee': '💲 Гонорар',
+        'fee': '💲 Гонорары',
         'find': '💲 Находка',
         'ecommerce': '💰 Э-коммерция',
         'crowdfunding': '💖 Краудфандинг',
