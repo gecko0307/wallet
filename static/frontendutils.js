@@ -62,10 +62,11 @@ function category(identifier) {
         'salary': 'Зарплата',
         'fee': 'Гонорары',
         'find': 'Находка',
-        'ecommerce': 'Э-коммерция',
+        'ecommerce': 'Э-коммерция и фриланс',
         'crowdfunding': 'Краудфандинг',
         'interest': 'Проценты от банков',
         'trading': 'Трейдинг',
+        'art': 'Продажа картин',
         'other': 'Прочее'
     }[identifier];
 }
@@ -98,6 +99,7 @@ function categoryIcon(identifier) {
         'crowdfunding': '💖',
         'interest': '💵',
         'trading': '📈',
+        'art': '🖼',
         'other': '❓'
     }[identifier];
 }

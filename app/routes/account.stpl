@@ -107,11 +107,12 @@
                             <option value="hobby">🎨 Хобби и творчество</option>
                             <option value="salary">💼 Зарплата</option>
                             <option value="fee">💲 Гонорар</option>
-                            <option value="ecommerce">💰 Э-коммерция</option>
+                            <option value="ecommerce">💰 Э-коммерция и фриланс</option>
                             <option value="crowdfunding">💖 Краудфандинг</option>
                             <option value="interest">💵 Проценты от банков</option>
                             <option value="trading">📈 Трейдинг</option>
                             <option value="find">💲 Находка</option>
+                            <option value="art">🖼 Продажа картин</option>
                             <option value="other">❓ Прочее</option>
                             </select>
                         </div></th>
