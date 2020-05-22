@@ -30,6 +30,17 @@ var ctx = document.getElementById("myChart").getContext("2d");
 loadJSON("/balance.json?year={{data.year}}", function(json) {
     var data = JSON.parse(json);
     
+    var vmin = data.balance[0];
+    var vmax = data.balance[Math.max(data.maxMonth, 0)];
+    var step = (vmax - vmin) / Math.max(data.maxMonth, 1);
+    
+    console.log(data.maxMonth);
+    
+    var extrapolated = data.balance.map(function(v, i)
+    {
+        return vmin + i * step;
+    });
+    
     var balanceData = {
         labels: ["Январь", "Февраль", "Март", "Апрель", "Май", "Июнь", "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь"],
         datasets: [
@@ -38,6 +49,12 @@ loadJSON("/balance.json?year={{data.year}}", function(json) {
                 label: "Баланс",
                 borderColor: "rgba(58, 183, 0, 1.0)",
                 backgroundColor: "rgba(58, 183, 0, 0.1)"
+            },
+            {
+                data: extrapolated,
+                label: "Экстраполяция",
+                borderColor: "rgba(255, 0, 0, 1.0)",
+                backgroundColor: "rgba(255, 0, 0, 0.1)"
             }
         ]
     };

@@ -23,7 +23,8 @@ def flow(db):
 @bottle.route('/balance.json')
 def balanceJson(db):
     data = {
-        'balance': [0 for x in range(12)]
+        'balance': [0 for x in range(12)],
+        'maxMonth': 0
     }
     year = datetime.now().year
     if 'year' in request.query:
@@ -42,6 +43,8 @@ def balanceJson(db):
         if d.year == year:
             for m in range(month, 12):
                 data['balance'][m] += value
+            if month > data['maxMonth']:
+                data['maxMonth'] = month
         elif d.year < year:
             for m in range(0, 12):
                 data['balance'][m] += value

@@ -33,6 +33,12 @@
         <span id="AverageMonthlyExpence" style="color:#e24444">-</span>
         <span id="AverageMonthlyNet" style="color:#379683">=</span>
         </p>
+        <p>
+        Прогноз на год: 
+        <span id="EstimatedAnnualRevenue" style="color:#004ecc">+</span>
+        <span id="EstimatedAnnualExpence" style="color:#e24444">-</span>
+        <span id="EstimatedAnnualNet" style="color:#379683">=</span>
+        </p>
         </div>
         
         <script src="Chart.bundle.min.js"></script>
@@ -80,6 +86,10 @@ loadJSON("/flow.json?year={{data.year}}", function(json) {
     document.getElementById("AverageMonthlyRevenue").innerHTML += money(monthlyRevenue, "RUB");
     document.getElementById("AverageMonthlyExpence").innerHTML += money(monthlyExpence, "RUB");
     document.getElementById("AverageMonthlyNet").innerHTML += money(monthlyNet, "RUB");
+    
+    document.getElementById("EstimatedAnnualRevenue").innerHTML += money(monthlyRevenue * 12, "RUB");
+    document.getElementById("EstimatedAnnualExpence").innerHTML += money(monthlyExpence * 12, "RUB");
+    document.getElementById("EstimatedAnnualNet").innerHTML += money(monthlyNet * 12, "RUB");
     
     var flowData = {
         labels: ["Январь", "Февраль", "Март", "Апрель", "Май", "Июнь", "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь"],
