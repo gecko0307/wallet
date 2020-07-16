@@ -34,8 +34,6 @@
             % end
         </div>
         
-        <!-- TODO: операции со счетом -->
-        
         <a href="/editAccount?id={{data.account.id}}">Изменить счет</a> | <a href="/confirmDeleteAccount?id={{data.account.id}}">Удалить счет</a>
         
         <p><b>Транзакции:</b></p>
@@ -60,7 +58,7 @@
             % for transaction in sorted(data.account.transactions, key = lambda x: datetimeFromStr(x.date)):
             <tr id="transaction-{{ transaction.id }}">
                 <th>{{ datetimeFromStr(transaction.date).strftime('%d.%m.%Y') }}</th> 
-                <th>{{ category(transaction.category) }}</th> 
+                <th><a href="/transactionsByCategory?cat={{transaction.category}}">{{ category(transaction.category) }}</a></th> 
                 <th>{{ transaction.description }}</th>
                 <th style="color:{{ "#379683" if transaction.value > 0 else "#e24444" }}"><b>{{ transactionAmount(transaction.value, transaction.currency) }}</b></th>
                 <th>
