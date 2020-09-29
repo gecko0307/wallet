@@ -1,4 +1,4 @@
-% from app.utils import money, transactionAmount, toFixed, currencySymbol, datetimeFromStr, category
+% from app.utils import money, transactionAmount, toFixed, currencySymbol, currencyStep, datetimeFromStr, category
 <html lang="ru">
     <head>
         <meta charset="utf-8">
@@ -75,10 +75,10 @@
                 <p style="margin-bottom:0"><b>Создать транзакцию:</b></p>
                 <table class="new-transcation-table">
                     <colgroup>
-                        <col style="width:16%;"/>
+                        <col style="width:14%;"/>
                         <col style="width:20%;"/>
                         <col style="width:29%;"/>
-                        <col style="width:15%;"/>
+                        <col style="width:17%;"/>
                         <col style="width:20%;"/>
                     </colgroup>
                     <tr>
@@ -115,7 +115,7 @@
                             </select>
                         </div></th>
                         <th><input id="NewTransactionInputDescription" name="description" type="text" placeholder="Описание транзакции"></th> 
-                        <th><input id="NewTransactionInputValue" name="value" type="number" min="0.00" step="0.01" value="0.00" title="Сумма транзакции" required> {{ currencySymbol(data.account.currency) }}</th>
+                        <th><input id="NewTransactionInputValue" name="value" type="number" min="0.00" step="{{currencyStep(data.account.currency)}}" value="0.00" title="Сумма транзакции" required> {{ currencySymbol(data.account.currency) }}</th>
                         <th>
                             <input id="NewTransactionButtonSubmit" type="submit" formaction="/newTransaction?account={{data.account.id}}&type=add" value="+" title="Начислить сумму"> 
                             <input id="NewTransactionButtonSubmit" type="submit" formaction="/newTransaction?account={{data.account.id}}&type=sub" value="−" title="Списать сумму">

@@ -9,7 +9,18 @@ def currencySymbol(code):
     return {
         'USD': '$',
         'EUR': '€',
-        'RUB': '₽'
+        'RUB': '₽',
+        'BTC': '฿',
+        'mBTC': 'm฿',
+    }[code]
+
+def currencyStep(code):
+    return {
+        'USD': '0.01',
+        'EUR': '0.01',
+        'RUB': '0.01',
+        'BTC': 'any',
+        'mBTC': 'any',
     }[code]
 
 def money(value, currencyCode):

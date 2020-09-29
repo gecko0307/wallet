@@ -21,7 +21,7 @@
             За месяц: 
             <span style="color:#379683">+{{ money(data.monthRevenue, 'RUB') }}</span> 
             <span style="color:#e24444">-{{ money(data.monthExpense, 'RUB') }}</span>
-        </4>
+        </h4>
         <br><br>
         
         <table class="accounts-table">

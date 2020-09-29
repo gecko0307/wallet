@@ -28,7 +28,9 @@ function currencySymbol(code) {
     return {
         USD: "$",
         EUR: "€",
-        RUB: "₽"
+        RUB: "₽",
+        BTC: "฿",
+        mBTC: "m฿"
     }[code];
 }
 

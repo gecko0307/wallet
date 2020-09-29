@@ -28,6 +28,7 @@
                         <option value="USD">Доллар США</option>
                         <option value="EUR">Евро</option>
                         <option value="RUB" selected>Российский рубль</option>
+                        <option value="mBTC">Миллибиткоин</option>
                     </select>
                     </div>
                 </p>
