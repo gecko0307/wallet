@@ -1,4 +1,5 @@
-% from app.utils import money, transactionAmount, toFixed, currencySymbol, currencyStep, datetimeFromStr, category
+% from app.utils import money, transactionAmount, toFixed, currencySymbol, currencyStep, datetimeFromStr, category, currentDateTime
+% from app.utils import month as monthStr
 <html lang="ru">
     <head>
         <meta charset="utf-8">
@@ -55,19 +56,42 @@
                 <th></th>
             </tr>
             
-            % for transaction in sorted(data.account.transactions, key = lambda x: datetimeFromStr(x.date)):
-            <tr id="transaction-{{ transaction.id }}">
-                <th>{{ datetimeFromStr(transaction.date).strftime('%d.%m.%Y') }}</th> 
-                <th><a href="/transactionsByCategory?cat={{transaction.category}}">{{ category(transaction.category) }}</a></th> 
-                <th>{{ transaction.description }}</th>
-                <th style="color:{{ "#379683" if transaction.value > 0 else "#e24444" }}"><b>{{ transactionAmount(transaction.value, transaction.currency) }}</b></th>
-                <th>
-                    <span class="hiddenlink">
-                        <a class="hiddenlink" href="/editTransaction?id={{transaction.id}}">Изменить</a> | 
-                        <a class="hiddenlink" href="/deleteTransaction?id={{transaction.id}}">Удалить</a>
-                    </span>
-                </th>
-            </tr>
+            % transactions = data.account.transactions
+            % for year, months in transactions.items():
+                % dataShown = int(year == str(currentDateTime().year))
+                <tr>
+                    <th colspan="5">
+                        <a href="#" id="hider-{{ year }}" class="row-hider" data-shown="{{ dataShown }}" onclick="event.preventDefault(); toggleYear('{{ year }}');">
+                            <span id="arrow-{{ year }}" class="row-hider-arrow">{{ "▼" if dataShown else "►" }}</span> {{ year }}</a>
+                    </th> 
+                </tr>
+                % for monthi, month in enumerate(months):
+                    % if len(month) > 0:
+                        <tr class="group-{{ year }}" style="display: {{ "table-row" if dataShown else "none" }}">
+                            <th colspan="5">
+                                <b>{{ monthStr(monthi).capitalize() }} ({{ len(month) }}):</b>
+                                <!--
+                                <a href="#" id="hider-{{ year }}-{{ monthi }}" class="row-hider" data-shown="true" onclick="event.preventDefault(); toggleMonth('{{ year }}', '{{ monthi }}');">
+                                    <span id="arrow-{{ year }}-{{ monthi }}" class="row-hider-arrow">▼</span> {{ monthStr(monthi) }}</a>
+                                -->
+                            </th> 
+                        </tr>
+                    % end
+                    % for transaction in sorted(month, key = lambda x: datetimeFromStr(x.date)):
+                        <tr id="transaction-{{ transaction.id }}" class="clickablerow group-{{ year }} group-{{ year }}-{{ monthi }}" style="display: {{ "table-row" if dataShown else "none" }}">
+                            <th>{{ datetimeFromStr(transaction.date).strftime('%d.%m.%Y') }}</th> 
+                            <th><a href="/transactionsByCategory?cat={{transaction.category}}">{{ category(transaction.category) }}</a></th> 
+                            <th>{{ transaction.description }}</th>
+                            <th style="color:{{ "#379683" if transaction.value > 0 else "#e24444" }}"><b>{{ transactionAmount(transaction.value, transaction.currency) }}</b></th>
+                            <th>
+                                <span class="hiddenlink">
+                                    <a class="hiddenlink" href="/editTransaction?id={{transaction.id}}">Изменить</a> | 
+                                    <a class="hiddenlink" href="/deleteTransaction?id={{transaction.id}}">Удалить</a>
+                                </span>
+                            </th>
+                        </tr>
+                    % end
+                % end
             % end
         </table>
         
@@ -126,6 +150,50 @@
         
         <script>
             document.getElementById("NewTransactionInputDate").valueAsDate = new Date();
+            
+            function toggleHider(hiderId, arrowId)
+            {
+                var triangleShown = "▼";
+                var triangleHidden = "►";
+                var hider = document.getElementById(hiderId);
+                var arrow = document.getElementById(arrowId);
+                var shown = hider.getAttribute("data-shown");
+                if (shown == "1")
+                {
+                    arrow.innerText = triangleHidden;
+                    hider.setAttribute("data-shown", "0");
+                }
+                else
+                {
+                    arrow.innerText = triangleShown;
+                    hider.setAttribute("data-shown", "1");
+                }
+            }
+            
+            function toggleYear(year)
+            {
+                toggleHider("hider-" + year, "arrow-" + year);
+                toggleRowsByClass("group-" + year);
+            }
+            
+            function toggleMonth(year, month)
+            {
+                console.log(year, month);
+                // TODO
+            }
+            
+            function toggleRowsByClass(className)
+            {
+                console.log(className);
+                var e = document.getElementsByClassName(className);
+                for(var i = 0; i < e.length; i++)
+                {
+                    if (e[i].style.display == "none")
+                        e[i].style.display = "table-row";
+                    else
+                        e[i].style.display = "none";
+                }
+            }
         </script>
         
         </div>

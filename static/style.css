@@ -344,7 +344,7 @@ table tr:hover .hiddenlink {
     display: inline-block;
 }
 
-.transactions-table tr:hover {
+.transactions-table tr.clickablerow:hover {
     background-color: #edf5e1;
 }
 
@@ -357,4 +357,13 @@ table tr:hover .hiddenlink {
     background-color: #edf5e1;
     width: 100%;
     max-height: 300px;
+}
+
+.row-hider:hover, .row-hider:visited, .row-hider:link, .row-hider:active {
+    text-decoration: none !important;
+    font-weight: bold;
+}
+
+.row-hider-arrow {
+    font-family: monospace;
 }

@@ -6,7 +6,7 @@ from ..data import *
 @bottle.route('/account')
 def index(db):
     accountId = request.query['id']
-    d = accountData(accountId, db)
+    d = accountData2(accountId, db)
     if d != None:
         return bottle.template(load('account.stpl'), data = d)
     else:

@@ -116,3 +116,6 @@ def month(num):
         'ноябрь',
         'декабрь'
     ][num]
+
+def currentDateTime():
+    return datetime.datetime.now()
