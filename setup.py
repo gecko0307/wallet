@@ -14,7 +14,7 @@ setup(
     options = {
         'build_exe': {
         'packages': ['os', 'sys', 'ctypes', 'json'],
-        'include_files': CEF_INCLUDES + ['data', 'site', 'backendutils.py'],
+        'include_files': CEF_INCLUDES + ['data', 'static', 'app'],
         'include_msvcr': True,
     }},
     executables = [Executable(script='wallet.py', icon='icon.ico')]
