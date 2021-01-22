@@ -20,6 +20,11 @@
         <div id="report">
             <canvas id="myChart"></canvas>
         </div>
+        <br>
+        <p>
+        Общий доход за год: 
+        <span id="AnnualRevenue" style="color:#004ecc"></span>
+        </p>
         </div>
         
         <script src="Chart.bundle.min.js"></script>
@@ -29,6 +34,12 @@ var ctx = document.getElementById("myChart").getContext("2d");
 
 loadJSON("/revenue.json?year={{data.year}}", function(json) {    
     var data = JSON.parse(json);
+    
+    var annualRevenue = 0;
+    data.revenue.map(v => {
+        annualRevenue += v;
+    });
+    document.getElementById("AnnualRevenue").innerHTML = money(annualRevenue, "RUB");
     
     var labels = data.categories;    
     var revenue = data.revenue;

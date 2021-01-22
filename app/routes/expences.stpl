@@ -20,6 +20,11 @@
         <div id="report">
             <canvas id="myChart"></canvas>
         </div>
+        <br>
+        <p>
+        Общий расход за год: 
+        <span id="AnnualExpence" style="color:#e24444"></span>
+        </p>
         </div>
         
         <script src="Chart.bundle.min.js"></script>
@@ -29,6 +34,12 @@ var ctx = document.getElementById("myChart").getContext("2d");
 
 loadJSON("/expences.json?year={{data.year}}", function(json) {    
     var data = JSON.parse(json);
+    
+    var annualExpence = 0;
+    data.expences.map(v => {
+        annualExpence += v;
+    });
+    document.getElementById("AnnualExpence").innerHTML = money(annualExpence, "RUB");
     
     var labels = data.categories;    
     var expences = data.expences;
