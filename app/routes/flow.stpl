@@ -34,7 +34,7 @@
         <span id="AverageMonthlyNet" style="color:#379683">=</span>
         </p>
         <p>
-        Прогноз на год: 
+        Прогноз на текущий год: 
         <span id="EstimatedAnnualRevenue" style="color:#004ecc">+</span>
         <span id="EstimatedAnnualExpence" style="color:#e24444">-</span>
         <span id="EstimatedAnnualNet" style="color:#379683">=</span>
@@ -49,47 +49,32 @@ var ctx = document.getElementById("myChart").getContext("2d");
 loadJSON("/flow.json?year={{data.year}}", function(json) {
     var data = JSON.parse(json);
     
-    var annualRevenue = 0;
-    var annualExpence = 0;
-    var annualNet = 0;
-    
-    data.revenue.map(v => {
-        annualRevenue += v;
-    });
-    
-    data.expense.map(v => {
-        annualExpence += v;
-    });
-    
-    annualNet = annualRevenue - annualExpence;
+    var annualRevenue = data.annualRevenue;
+    var annualExpence = data.annualExpence;
+    var annualNet = data.annualNet;
     
     var annualExpencePercentage = annualExpence / (annualRevenue / 100);
     var annualNetPercentage = annualNet / (annualRevenue / 100);
+    
+    var monthlyRevenue = data.monthlyRevenue;
+    var monthlyExpence = data.monthlyExpence;
+    var monthlyNet = data.monthlyNet;
+    
+    var estimatedAnnualRevenue = data.estimatedAnnualRevenue;
+    var estimatedAnnualExpence = data.estimatedAnnualExpence;
+    var estimatedAnnualNet = data.estimatedAnnualNet;
     
     document.getElementById("AnnualRevenue").innerHTML += money(annualRevenue, "RUB");
     document.getElementById("AnnualExpence").innerHTML += money(annualExpence, "RUB") + " (" + annualExpencePercentage.toFixed(2) + "%)";
     document.getElementById("AnnualNet").innerHTML += money(annualNet, "RUB") + " (" + annualNetPercentage.toFixed(2) + "%)";
     
-    var d = new Date();
-    var numMonths;
-    var currentYear = d.getFullYear();
-    var reportYear = {{ data.year }};
-    if (currentYear == reportYear)
-        numMonths = d.getMonth() + 1;
-    else
-        numMonths = 12;
-    
-    var monthlyRevenue = annualRevenue / numMonths;
-    var monthlyExpence = annualExpence / numMonths;
-    var monthlyNet = annualNet / numMonths;
-    
     document.getElementById("AverageMonthlyRevenue").innerHTML += money(monthlyRevenue, "RUB");
     document.getElementById("AverageMonthlyExpence").innerHTML += money(monthlyExpence, "RUB");
     document.getElementById("AverageMonthlyNet").innerHTML += money(monthlyNet, "RUB");
     
-    document.getElementById("EstimatedAnnualRevenue").innerHTML += money(monthlyRevenue * 12, "RUB");
-    document.getElementById("EstimatedAnnualExpence").innerHTML += money(monthlyExpence * 12, "RUB");
-    document.getElementById("EstimatedAnnualNet").innerHTML += money(monthlyNet * 12, "RUB");
+    document.getElementById("EstimatedAnnualRevenue").innerHTML += money(estimatedAnnualRevenue, "RUB");
+    document.getElementById("EstimatedAnnualExpence").innerHTML += money(estimatedAnnualExpence, "RUB");
+    document.getElementById("EstimatedAnnualNet").innerHTML += money(estimatedAnnualNet, "RUB");
     
     var flowData = {
         labels: ["Январь", "Февраль", "Март", "Апрель", "Май", "Июнь", "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь"],
