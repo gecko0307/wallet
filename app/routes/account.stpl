@@ -57,7 +57,7 @@
             </tr>
             
             % transactions = data.account.transactions
-            % for year, months in transactions.items():
+            % for year, months in sorted(transactions.items()):
                 % dataShown = int(year == str(currentDateTime().year))
                 <tr>
                     <th colspan="5">
