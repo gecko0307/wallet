@@ -132,7 +132,7 @@
                             <option value="ecommerce">💰 Э-коммерция и фриланс</option>
                             <option value="crowdfunding">💖 Краудфандинг</option>
                             <option value="interest">💵 Проценты от банков</option>
-                            <option value="trading">📈 Трейдинг</option>
+                            <option value="trading">📈 Инвестиции</option>
                             <option value="find">💲 Находка</option>
                             <option value="art">🖼 Продажа картин</option>
                             <option value="other">❓ Прочее</option>

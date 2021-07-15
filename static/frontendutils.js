@@ -67,7 +67,7 @@ function category(identifier) {
         'ecommerce': 'Э-коммерция и фриланс',
         'crowdfunding': 'Краудфандинг',
         'interest': 'Проценты от банков',
-        'trading': 'Трейдинг',
+        'trading': 'Инвестиции',
         'art': 'Продажа картин',
         'other': 'Прочее'
     }[identifier];
