@@ -5,7 +5,6 @@ from cx_Freeze import setup, Executable
 
 cefPath = join(get_python_lib(), 'cefpython3')
 CEF_INCLUDES = glob(join(cefPath, '*'))
-CEF_INCLUDES.remove(join(cefPath, 'examples'))
 
 setup(
     name = 'wallet',

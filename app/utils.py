@@ -66,7 +66,8 @@ def categoryIcon(identifier):
         'interest': '💵',
         'trading': '📈',
         'art': '🖼',
-        'other': '❓'
+        'other': '❓',
+        'tax': '🧾'
     }[identifier]
     
 def category(identifier):
@@ -98,6 +99,7 @@ def category(identifier):
         'interest': '💵 Проценты от банков',
         'trading': '📈 Инвестиции',
         'art': '🖼️ Продажа картин',
+        'tax': '⚖️ Налоги',
         'other': '❓ Прочее'
     }[identifier]
     

@@ -135,6 +135,7 @@
                             <option value="trading">📈 Инвестиции</option>
                             <option value="find">💲 Находка</option>
                             <option value="art">🖼 Продажа картин</option>
+                            <option value="tax">⚖️ Налоги</option>
                             <option value="other">❓ Прочее</option>
                             </select>
                         </div></th>

@@ -50,6 +50,7 @@
                             <option value="trading" {{ 'selected' if data.transaction.category == 'trading' else '' }}>📈 Инвестиции</option>
                             <option value="find" {{ 'selected' if data.transaction.category == 'find' else '' }}>💲 Находка</option>
                             <option value="art" {{ 'selected' if data.transaction.category == 'art' else '' }}>🖼 Продажа картин</option>
+                            <option value="tax" {{ 'selected' if data.transaction.category == 'tax' else '' }}>⚖️ Налоги</option>
                             <option value="other" {{ 'selected' if data.transaction.category == 'other' else '' }}>❓ Прочее</option>
                             </select>
                         </div></th>
