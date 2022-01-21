@@ -11,7 +11,7 @@ Simple personal accounting application. Written in Python 3.7 using Bottle for a
 
 ## Limitations and peculiarities
 
-Keep in mind that I wrote this for my own personal use, mainly because I didn't want to entrust my financial information to existing apps. It suits me well and I don't plan to turn Wallet into more feature-rich and competitive solution.
+Keep in mind that I wrote this for my own personal use, mainly because I didn't want to entrust my financial information to existing apps. It suits me well, but it's pretty specific for my specific needs and preferences. I don't plan to turn Wallet into more feature-rich and competitive solution.
 
 * The app is in Russian, and making an international version is currently a low priority for me
 * Main currency is Russian ruble (RUB). Also USD and EUR are supported for individual accounts, but for statistics all currencies are converted to RUB. I did't need arbitrary currencies, and thus did't implement support for them
