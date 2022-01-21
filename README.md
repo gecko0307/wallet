@@ -1,8 +1,9 @@
 # Wallet
-Simple personal accounting application. Written in Python 3.7 using Bottle framework for a server and CEF for a client.
+Simple personal accounting application. Written in Python 3.7 using Bottle for a server and CEF for a client.
 
 ## Features
 
+* Web GUI powered by Chromium Embedded Framework
 * Create one or more accounts and track incomes and expenses for them
 * Edit existing entries
 * All entries fall into one of several predefined categories (for example, Food, Accommodation, Salary, Transportation)
