@@ -7,7 +7,7 @@ Simple personal accounting application. Written in Python 3.7 using Bottle for a
 * Create one or more accounts and track incomes and expenses for them
 * Edit existing entries
 * All entries fall into one of several predefined categories (for example, Food, Accommodation, Salary, Transportation)
-* A number of monthly and yearly statistics charts, including cash flow, dynamics, assets distribution, income/expense distribution.
+* A number of monthly and yearly statistics charts (using Chart.js), including cash flow, dynamics, assets distribution, income/expense distribution.
 
 ## Limitations and peculiarities
 
