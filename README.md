@@ -3,7 +3,7 @@ Simple personal accounting application. Written in Python 3.7 using Bottle for a
 
 ## Features
 
-* Web GUI powered by Chromium Embedded Framework (Electron for Python, yay!)
+* Web GUI powered by Chromium Embedded Framework ("Electron for Python", yay!)
 * Create one or more accounts and track incomes and expenses for them
 * Edit existing entries
 * All entries fall into one of several predefined categories (for example, Food, Accommodation, Salary, Transportation)
