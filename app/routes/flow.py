@@ -89,9 +89,9 @@ def flowJson(db):
     
     numYearsFull = currentYear - startYear
     numMonthsFull = numYearsFull * 12 + currentDateTime.month
-    estimatedAnnualRevenue = (fullRevenue / numMonthsFull) * 12
-    estimatedAnnualExpence = (fullExpence / numMonthsFull) * 12
-    estimatedAnnualNet = (estimatedAnnualRevenue - estimatedAnnualExpence)
+    estimatedAnnualRevenue = monthlyRevenue * 12
+    estimatedAnnualExpence = monthlyExpence * 12
+    estimatedAnnualNet = monthlyNet * 12
     data['estimatedAnnualRevenue'] = estimatedAnnualRevenue
     data['estimatedAnnualExpence'] = estimatedAnnualExpence
     data['estimatedAnnualNet'] = estimatedAnnualNet

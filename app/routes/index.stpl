@@ -46,7 +46,8 @@
         
         <button onclick="document.location = '/createaccount';">💲 Создать счет</button>
         <button onclick="document.location = '/assets';">📊 Средства</button>
-        <button onclick="document.location = '/balance';">📊 Динамика средств</button>
+        <button onclick="document.location = '/balance';">📊 Динамика (за год)</button>
+        <button onclick="document.location = '/totalbalance';">📊 Динамика (общая)</button>
         <button onclick="document.location = '/flow';">📊 Денежный поток</button>
         <button onclick="document.location = '/revenue';">📊 Доходы</button>
         <button onclick="document.location = '/expences';">📊 Расходы</button>
