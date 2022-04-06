@@ -70,6 +70,7 @@ function category(identifier) {
         'trading': 'Инвестиции',
         'art': 'Продажа картин',
         'tax': 'Налоги',
+        'souvenirs': 'Игрушки и сувениры',
         'other': 'Прочее'
     }[identifier];
 }
@@ -104,6 +105,7 @@ function categoryIcon(identifier) {
         'trading': '📈',
         'art': '🖼',
         'other': '❓',
-        'tax': '⚖️'
+        'tax': '⚖️',
+        'souvenirs': '🤖'
     }[identifier];
 }

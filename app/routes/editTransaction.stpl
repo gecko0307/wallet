@@ -51,6 +51,7 @@
                             <option value="find" {{ 'selected' if data.transaction.category == 'find' else '' }}>💲 Находка</option>
                             <option value="art" {{ 'selected' if data.transaction.category == 'art' else '' }}>🖼 Продажа картин</option>
                             <option value="tax" {{ 'selected' if data.transaction.category == 'tax' else '' }}>⚖️ Налоги</option>
+                            <option value="souvenirs" {{ 'selected' if data.transaction.category == 'tax' else '' }}>🤖 Игрушки и сувениры</option>
                             <option value="other" {{ 'selected' if data.transaction.category == 'other' else '' }}>❓ Прочее</option>
                             </select>
                         </div></th>

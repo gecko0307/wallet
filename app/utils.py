@@ -67,7 +67,8 @@ def categoryIcon(identifier):
         'trading': '📈',
         'art': '🖼',
         'other': '❓',
-        'tax': '🧾'
+        'tax': '🧾',
+        'souvenirs': '🤖'
     }[identifier]
     
 def category(identifier):
@@ -100,7 +101,8 @@ def category(identifier):
         'trading': '📈 Инвестиции',
         'art': '🖼️ Продажа картин',
         'tax': '⚖️ Налоги',
-        'other': '❓ Прочее'
+        'other': '❓ Прочее',
+        'souvenirs': '🤖 Игрушки и сувениры'
     }[identifier]
     
 def month(num):
