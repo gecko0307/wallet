@@ -36,10 +36,13 @@ def balanceJson(db):
         d = datetime.strptime(trans['DATETIME'], '%Y-%m-%d %H:%M:%S')
         month = d.month - 1
         query = select('Accounts', ["ID='%s'" % trans['ACCOUNT']])
-        cursor = db.execute(query)
-        account = cursor.fetchall()[0]
+        exchangeRate = 1
+        res = db.execute(query).fetchall()
+        if len(res) != 0:
+            account = res[0]
+            exchangeRate = account['REPORT_EXCHANGE_RATE']
         value = trans['VALUE']
-        value *= account['REPORT_EXCHANGE_RATE']
+        value *= exchangeRate
         if d.year == year:
             for m in range(month, 12):
                 data['balance'][m] += value
