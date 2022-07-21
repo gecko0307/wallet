@@ -7,8 +7,9 @@ def newAccount(db):
     accountDescription = request.forms.getunicode('description') or ''
     accountCurrency = request.forms.get('currency') or 'RUB'
     accountExchangeRate = request.forms.get('exchangeRate') or 1
+    hidden = 0
     db.execute(
-        "INSERT INTO Accounts (NAME, DESCRIPTION, CURRENCY, REPORT_EXCHANGE_RATE) VALUES (?, ?, ?, ?)", 
-        (accountName, accountDescription, accountCurrency, accountExchangeRate,))
+        "INSERT INTO Accounts (NAME, DESCRIPTION, CURRENCY, REPORT_EXCHANGE_RATE, HIDDEN) VALUES (?, ?, ?, ?, ?)", 
+        (accountName, accountDescription, accountCurrency, accountExchangeRate, hidden,))
     db.commit()
     bottle.redirect('/')

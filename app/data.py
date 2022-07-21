@@ -55,6 +55,7 @@ def profileData(db):
             'description': account['DESCRIPTION'],
             'currency': account['CURRENCY'],
             'exchangeRate': account['REPORT_EXCHANGE_RATE'],
+            'hidden': bool(account['HIDDEN']),
             'balance': accountBalance
         })
         data.accounts.append(acc)
@@ -94,6 +95,7 @@ def accountData(id, db):
             'description': account['DESCRIPTION'],
             'currency': account['CURRENCY'],
             'exchangeRate': account['REPORT_EXCHANGE_RATE'],
+            'hidden': bool(account['HIDDEN']),
             'balance': balance,
             'transactions': transactions
         })
