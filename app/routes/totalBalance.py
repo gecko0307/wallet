@@ -23,7 +23,7 @@ def flow(db):
 @bottle.route('/totalbalance.json')
 def balanceJson(db):
     data = {
-        'balance': [0 for x in range(12 * 5)],
+        'balance': [0 for x in range(12 * 6)],
         'maxMonth': 0
     }
     years = 0
