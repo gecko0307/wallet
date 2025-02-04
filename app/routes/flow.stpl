@@ -140,6 +140,15 @@ loadJSON("/flow.json?year={{data.year}}", function(json) {
                     else
                         event.target.style.cursor = "default";
                 }
+            },
+            plugins: {
+                legend: {
+                    labels: {
+                        font: {
+                            family: "sans-serif"
+                        }
+                    }
+                }
             }
         }
     });
